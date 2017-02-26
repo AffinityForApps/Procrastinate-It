@@ -7,21 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B9E875355CCCC0A46B40CBE /* Pods_Procrastinate_It.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FCC2899E4A4774BFE9D571 /* Pods_Procrastinate_It.framework */; };
 		62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E842F61E5FE4F7007E40F5 /* AppDelegate.swift */; };
-		62E842F91E5FE4F8007E40F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E842F81E5FE4F8007E40F5 /* ViewController.swift */; };
 		62E842FC1E5FE4F9007E40F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E842FA1E5FE4F9007E40F5 /* Main.storyboard */; };
 		62E842FE1E5FE4FB007E40F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62E842FD1E5FE4FB007E40F5 /* Assets.xcassets */; };
 		62E843011E5FE4FC007E40F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E842FF1E5FE4FC007E40F5 /* LaunchScreen.storyboard */; };
+		62E8430C1E5FE5FD007E40F5 /* PITask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E8430B1E5FE5FD007E40F5 /* PITask.swift */; };
+		62E8430E1E5FEDAA007E40F5 /* AddTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E8430D1E5FEDAA007E40F5 /* AddTaskVC.swift */; };
+		62E843101E612BA8007E40F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62E8430F1E612BA8007E40F5 /* GoogleService-Info.plist */; };
+		62E843121E61D173007E40F5 /* SignUpInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843111E61D173007E40F5 /* SignUpInVC.swift */; };
+		62E843141E61D2F4007E40F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843131E61D2F4007E40F5 /* User.swift */; };
+		62E843161E6282EF007E40F5 /* PICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843151E6282EF007E40F5 /* PICell.swift */; };
+		62E843181E628B18007E40F5 /* ProcrastinateTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843171E628B18007E40F5 /* ProcrastinateTVC.swift */; };
+		62E8431A1E62C672007E40F5 /* EditTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843191E62C672007E40F5 /* EditTaskVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06FCC2899E4A4774BFE9D571 /* Pods_Procrastinate_It.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Procrastinate_It.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E842F31E5FE4F5007E40F5 /* Procrastinate It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Procrastinate It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E842F61E5FE4F7007E40F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		62E842F81E5FE4F8007E40F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		62E842FB1E5FE4F9007E40F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62E842FD1E5FE4FB007E40F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62E843001E5FE4FC007E40F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62E843021E5FE4FD007E40F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62E8430B1E5FE5FD007E40F5 /* PITask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PITask.swift; sourceTree = "<group>"; };
+		62E8430D1E5FEDAA007E40F5 /* AddTaskVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskVC.swift; sourceTree = "<group>"; };
+		62E8430F1E612BA8007E40F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		62E843111E61D173007E40F5 /* SignUpInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpInVC.swift; sourceTree = "<group>"; };
+		62E843131E61D2F4007E40F5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		62E843151E6282EF007E40F5 /* PICell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PICell.swift; sourceTree = "<group>"; };
+		62E843171E628B18007E40F5 /* ProcrastinateTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcrastinateTVC.swift; sourceTree = "<group>"; };
+		62E843191E62C672007E40F5 /* EditTaskVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskVC.swift; sourceTree = "<group>"; };
+		E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.debug.xcconfig"; sourceTree = "<group>"; };
+		E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.release.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B9E875355CCCC0A46B40CBE /* Pods_Procrastinate_It.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +59,8 @@
 			children = (
 				62E842F51E5FE4F6007E40F5 /* Procrastinate It */,
 				62E842F41E5FE4F5007E40F5 /* Products */,
+				7376B901D39C908FDEDB5395 /* Pods */,
+				D5A1EDAAA4DC205D9AB69F57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +75,62 @@
 		62E842F51E5FE4F6007E40F5 /* Procrastinate It */ = {
 			isa = PBXGroup;
 			children = (
+				62E8430A1E5FE5D4007E40F5 /* Model */,
+				62E843091E5FE5C6007E40F5 /* View */,
+				62E843081E5FE5B5007E40F5 /* Controller */,
 				62E842F61E5FE4F7007E40F5 /* AppDelegate.swift */,
-				62E842F81E5FE4F8007E40F5 /* ViewController.swift */,
 				62E842FA1E5FE4F9007E40F5 /* Main.storyboard */,
 				62E842FD1E5FE4FB007E40F5 /* Assets.xcassets */,
 				62E842FF1E5FE4FC007E40F5 /* LaunchScreen.storyboard */,
 				62E843021E5FE4FD007E40F5 /* Info.plist */,
+				62E8430F1E612BA8007E40F5 /* GoogleService-Info.plist */,
 			);
 			path = "Procrastinate It";
+			sourceTree = "<group>";
+		};
+		62E843081E5FE5B5007E40F5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				62E843111E61D173007E40F5 /* SignUpInVC.swift */,
+				62E843171E628B18007E40F5 /* ProcrastinateTVC.swift */,
+				62E8430D1E5FEDAA007E40F5 /* AddTaskVC.swift */,
+				62E843191E62C672007E40F5 /* EditTaskVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		62E843091E5FE5C6007E40F5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				62E843151E6282EF007E40F5 /* PICell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		62E8430A1E5FE5D4007E40F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62E8430B1E5FE5FD007E40F5 /* PITask.swift */,
+				62E843131E61D2F4007E40F5 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7376B901D39C908FDEDB5395 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */,
+				E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D5A1EDAAA4DC205D9AB69F57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06FCC2899E4A4774BFE9D571 /* Pods_Procrastinate_It.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +140,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62E843051E5FE4FD007E40F5 /* Build configuration list for PBXNativeTarget "Procrastinate It" */;
 			buildPhases = (
+				C882573DF8E5CEA2361EC694 /* [CP] Check Pods Manifest.lock */,
 				62E842EF1E5FE4F5007E40F5 /* Sources */,
 				62E842F01E5FE4F5007E40F5 /* Frameworks */,
 				62E842F11E5FE4F5007E40F5 /* Resources */,
+				6985335486F5D480489A8D3F /* [CP] Embed Pods Frameworks */,
+				76C7468AC8C752536D865D04 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,19 +198,74 @@
 			files = (
 				62E843011E5FE4FC007E40F5 /* LaunchScreen.storyboard in Resources */,
 				62E842FE1E5FE4FB007E40F5 /* Assets.xcassets in Resources */,
+				62E843101E612BA8007E40F5 /* GoogleService-Info.plist in Resources */,
 				62E842FC1E5FE4F9007E40F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6985335486F5D480489A8D3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76C7468AC8C752536D865D04 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C882573DF8E5CEA2361EC694 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		62E842EF1E5FE4F5007E40F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62E842F91E5FE4F8007E40F5 /* ViewController.swift in Sources */,
+				62E8430C1E5FE5FD007E40F5 /* PITask.swift in Sources */,
+				62E843141E61D2F4007E40F5 /* User.swift in Sources */,
 				62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */,
+				62E8430E1E5FEDAA007E40F5 /* AddTaskVC.swift in Sources */,
+				62E843181E628B18007E40F5 /* ProcrastinateTVC.swift in Sources */,
+				62E8431A1E62C672007E40F5 /* EditTaskVC.swift in Sources */,
+				62E843121E61D173007E40F5 /* SignUpInVC.swift in Sources */,
+				62E843161E6282EF007E40F5 /* PICell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +386,7 @@
 		};
 		62E843061E5FE4FD007E40F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5ZR8E9ADDM;
@@ -272,6 +400,7 @@
 		};
 		62E843071E5FE4FD007E40F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5ZR8E9ADDM;
@@ -302,6 +431,7 @@
 				62E843071E5FE4FD007E40F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
