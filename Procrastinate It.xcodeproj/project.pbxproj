@@ -18,8 +18,9 @@
 		62E843121E61D173007E40F5 /* SignUpInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843111E61D173007E40F5 /* SignUpInVC.swift */; };
 		62E843141E61D2F4007E40F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843131E61D2F4007E40F5 /* User.swift */; };
 		62E843161E6282EF007E40F5 /* PICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843151E6282EF007E40F5 /* PICell.swift */; };
-		62E843181E628B18007E40F5 /* ProcrastinateTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843171E628B18007E40F5 /* ProcrastinateTVC.swift */; };
 		62E8431A1E62C672007E40F5 /* EditTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E843191E62C672007E40F5 /* EditTaskVC.swift */; };
+		62E8431C1E643F33007E40F5 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E8431B1E643F33007E40F5 /* MaterialView.swift */; };
+		62E8431E1E644524007E40F5 /* ProcrastinateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E8431D1E644524007E40F5 /* ProcrastinateVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +37,9 @@
 		62E843111E61D173007E40F5 /* SignUpInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpInVC.swift; sourceTree = "<group>"; };
 		62E843131E61D2F4007E40F5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		62E843151E6282EF007E40F5 /* PICell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PICell.swift; sourceTree = "<group>"; };
-		62E843171E628B18007E40F5 /* ProcrastinateTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcrastinateTVC.swift; sourceTree = "<group>"; };
 		62E843191E62C672007E40F5 /* EditTaskVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskVC.swift; sourceTree = "<group>"; };
+		62E8431B1E643F33007E40F5 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		62E8431D1E644524007E40F5 /* ProcrastinateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcrastinateVC.swift; sourceTree = "<group>"; };
 		E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.debug.xcconfig"; sourceTree = "<group>"; };
 		E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.release.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				62E843111E61D173007E40F5 /* SignUpInVC.swift */,
-				62E843171E628B18007E40F5 /* ProcrastinateTVC.swift */,
+				62E8431D1E644524007E40F5 /* ProcrastinateVC.swift */,
 				62E8430D1E5FEDAA007E40F5 /* AddTaskVC.swift */,
 				62E843191E62C672007E40F5 /* EditTaskVC.swift */,
 			);
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				62E843151E6282EF007E40F5 /* PICell.swift */,
+				62E8431B1E643F33007E40F5 /* MaterialView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -260,9 +263,10 @@
 			files = (
 				62E8430C1E5FE5FD007E40F5 /* PITask.swift in Sources */,
 				62E843141E61D2F4007E40F5 /* User.swift in Sources */,
+				62E8431E1E644524007E40F5 /* ProcrastinateVC.swift in Sources */,
 				62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */,
+				62E8431C1E643F33007E40F5 /* MaterialView.swift in Sources */,
 				62E8430E1E5FEDAA007E40F5 /* AddTaskVC.swift in Sources */,
-				62E843181E628B18007E40F5 /* ProcrastinateTVC.swift in Sources */,
 				62E8431A1E62C672007E40F5 /* EditTaskVC.swift in Sources */,
 				62E843121E61D173007E40F5 /* SignUpInVC.swift in Sources */,
 				62E843161E6282EF007E40F5 /* PICell.swift in Sources */,

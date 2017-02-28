@@ -12,6 +12,7 @@ class PICell: UITableViewCell {
 
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

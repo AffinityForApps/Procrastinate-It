@@ -73,11 +73,12 @@ class EditTaskVC: UIViewController {
     
     @IBAction func saveTapped(_ sender: Any) {
         
-        let editedTask = PITask(taskName: taskTitleField.text!, taskInfo: taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey)
+        let editedTask = PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey)
         
         let task = ["Task Name":editedTask.taskName,"Task Info":editedTask.taskInfo,"Task Priority":editedTask.taskPriority,"Task Interval":editedTask.taskInterval] as [String : Any]
         
         self.ref.child("users/\(user)/tasks/\(editedTask.taskKey)").updateChildValues(task)
+        
         
         self.navigationController?.popToRootViewController(animated: true)
         
