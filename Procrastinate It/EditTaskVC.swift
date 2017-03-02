@@ -79,7 +79,6 @@ class EditTaskVC: UIViewController {
         
         self.ref.child("users/\(user)/tasks/\(editedTask.taskKey)").updateChildValues(task)
         
-        
         self.navigationController?.popToRootViewController(animated: true)
         
     }
