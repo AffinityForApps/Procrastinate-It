@@ -34,7 +34,7 @@ class AddTaskVC: UIViewController {
     var formattedDate = ""
     var priority = 0
     var interval = 0
-    var isRecurring = false
+    var isRecurring = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,6 @@ class AddTaskVC: UIViewController {
         prioritySlider.value = 0
         intervalSlider.value = 0
         recurringTaskSwitch.isOn = false
-
     }
     
     @IBAction func prioritySliderMoved(_ sender: Any) {
@@ -65,11 +64,13 @@ class AddTaskVC: UIViewController {
     
     @IBAction func recurringTaskSwitchTapped(_ sender: Any) {
         if recurringTaskSwitch.isOn {
-            recurringTaskSwitch.setOn(false, animated: true)
-            isRecurring = false
-        } else {
-            recurringTaskSwitch.setOn(true, animated: true)
+//            recurringTaskSwitch.setOn(false, animated: true)
             isRecurring = true
+            print(isRecurring)
+        } else {
+//            recurringTaskSwitch.setOn(true, animated: true)
+            isRecurring = false
+            print(isRecurring)
         }
     }
 

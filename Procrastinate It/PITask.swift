@@ -91,7 +91,7 @@ class PITask {
         self._taskKey = taskKey
         self._taskDate = taskDate
         self._lastIncrease = lastIncrease
-        self._isRecurring = false
+        self._isRecurring = isRecurring
         
     }
     
