@@ -21,65 +21,64 @@ class AddTaskVC: UIViewController {
     
     @IBOutlet weak var intervalLabel: UILabel!
     
+    @IBOutlet weak var prioritySlider: UISlider!
+    
+    @IBOutlet weak var intervalSlider: UISlider!
+    
+    @IBOutlet weak var recurringTaskSwitch: UISwitch!
+    
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()!.currentUser!.uid
-
-    
+    let currentDate = Date()
+    let dateFormatter = DateFormatter()
+    var formattedDate = ""
     var priority = 0
     var interval = 0
+    var isRecurring = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formattedDate = dateFormatter.string(from: currentDate)
         
         self.taskTitleField.text = ""
         self.taskDetailsField.text = ""
         self.priorityLabel.text = "\(priority)"
         self.intervalLabel.text = "\(interval)"
-        
-    }
+        prioritySlider.value = 0
+        intervalSlider.value = 0
+        recurringTaskSwitch.isOn = false
 
-    @IBAction func priorityIncreaseTapped(_ sender: Any) {
-        if priority >= 10 {
-            priority = 10
-        } else {
-            priority += 1
-        }
-        self.priorityLabel.text = "\(priority)"
-    }
-   
-    @IBAction func priorityDecreaseTapped(_ sender: Any) {
-        if priority <= 0{
-            priority = 0
-        } else {
-            priority -= 1
-        }
-        self.priorityLabel.text = "\(priority)"
     }
     
-    @IBAction func intervalIncreaseTapped(_ sender: Any) {
-        if interval >= 10{
-            interval = 10
-        } else {
-            interval += 1
-        }
-        self.intervalLabel.text = "\(interval)"
+    @IBAction func prioritySliderMoved(_ sender: Any) {
+        priority = Int(prioritySlider.value)
+        self.priorityLabel.text = "\(Int(prioritySlider.value))"
     }
     
-
-    @IBAction func intervalDecreaseTapped(_ sender: Any) {
-        if interval <= 0{
-            interval = 0
-        } else {
-            interval -= 1
-        }
-        self.intervalLabel.text = "\(interval)"
+    @IBAction func intervalSliderMoved(_ sender: Any) {
+        interval = Int(intervalSlider.value)
+        self.intervalLabel.text = "\(Int(intervalSlider.value))"
     }
+    
+    
+    @IBAction func recurringTaskSwitchTapped(_ sender: Any) {
+        if recurringTaskSwitch.isOn {
+            recurringTaskSwitch.setOn(false, animated: true)
+            isRecurring = false
+        } else {
+            recurringTaskSwitch.setOn(true, animated: true)
+            isRecurring = true
+        }
+    }
+
  
     @IBAction func addTaskTapped(_ sender: Any) {
         
-        let newTask = PITask(taskName: taskTitleField.text!, taskInfo: taskDetailsField.text!, taskPriority: priority, taskInterval: interval, taskKey: "")
+        let newTask = PITask(taskName: taskTitleField.text!, taskInfo: taskDetailsField.text!, taskPriority: priority, taskInterval: interval, taskKey: "", taskDate: currentDate, lastIncrease: currentDate, isRecurring: isRecurring)
         
-        let task = ["Task Name":newTask.taskName,"Task Info":newTask.taskInfo,"Task Priority":newTask.taskPriority,"Task Interval":newTask.taskInterval] as [String : Any]
+        let task = ["Task Name":newTask.taskName,"Task Info":newTask.taskInfo,"Task Priority":newTask.taskPriority,"Task Interval":newTask.taskInterval, "Task Date": formattedDate, "Last Increase":formattedDate,"Recurring": newTask.isRecurring] as NSDictionary
         
         self.ref.child("users/\(user)/tasks").childByAutoId().setValue(task)
         

@@ -14,6 +14,9 @@ class PITask {
     private var _taskPriority: Int
     private var _taskInterval: Int
     private var _taskKey: String
+    private var _taskDate: Date
+    private var _lastIncrease: Date
+    private var _isRecurring: Bool
     
     var taskName: String {
         get {
@@ -55,14 +58,40 @@ class PITask {
         }
     }
     
-    init(taskName: String, taskInfo: String, taskPriority: Int, taskInterval: Int, taskKey: String){
+    var taskDate: Date {
+        get {
+            return _taskDate
+        } set {
+            _taskDate = newValue
+        }
+    }
+    
+    var lastIncrease: Date {
+        get {
+            return _lastIncrease
+        } set {
+            _lastIncrease = newValue
+        }
+    }
+    
+    var isRecurring: Bool {
+        get {
+            return _isRecurring
+        } set {
+            _isRecurring = newValue
+        }
+    }
+    
+    init(taskName: String, taskInfo: String, taskPriority: Int, taskInterval: Int, taskKey: String, taskDate: Date, lastIncrease: Date, isRecurring: Bool){
         
         self._taskName = taskName
         self._taskInfo = taskInfo
         self._taskPriority = taskPriority
         self._taskInterval = taskInterval
         self._taskKey = taskKey
-        
+        self._taskDate = taskDate
+        self._lastIncrease = lastIncrease
+        self._isRecurring = false
         
     }
     

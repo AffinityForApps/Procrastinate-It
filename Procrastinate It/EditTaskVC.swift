@@ -13,15 +13,22 @@ import FirebaseAuth
 
 class EditTaskVC: UIViewController {
     
-    var task = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0, taskKey: "")
+    var task = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
     
     @IBOutlet weak var taskTitleField: UITextField!
     @IBOutlet weak var taskDetailsField: UITextView!
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var intervalLabel: UILabel!
     
+    @IBOutlet weak var prioritySlider: UISlider!
+    @IBOutlet weak var intervalSlider: UISlider!
+    
+    @IBOutlet weak var recurringTaskSwitch: UISwitch!
+    
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()!.currentUser!.uid
+    let dateFormatter = DateFormatter()
+    var formattedDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,52 +37,41 @@ class EditTaskVC: UIViewController {
         taskDetailsField.text = task.taskInfo
         priorityLabel.text = "\(task.taskPriority)"
         intervalLabel.text = "\(task.taskInterval)"
+        prioritySlider.value = Float(task.taskPriority)
+        intervalSlider.value = Float(task.taskInterval)
+        recurringTaskSwitch.isOn = task.isRecurring
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formattedDate = dateFormatter.string(from: Date())
         
     }
 
-    @IBAction func priorityIncreaseTapped(_ sender: Any) {
-        if task.taskPriority >= 10 {
-            task.taskPriority = 10
-        } else {
-            task.taskPriority += 1
-        }
+    
+    @IBAction func prioritySliderMoved(_ sender: Any) {
+        task.taskPriority = Int(prioritySlider.value)
         self.priorityLabel.text = "\(task.taskPriority)"
+        
     }
     
-    @IBAction func priorityDecreaseTapped(_ sender: Any) {
-        if task.taskPriority <= 0 {
-            task.taskPriority = 0
-        } else {
-            task.taskPriority -= 1
-        }
-        self.priorityLabel.text = "\(task.taskPriority)"
-    }
-
-    @IBAction func intervalIncreaseTapped(_ sender: Any) {
-        if task.taskInterval >= 10 {
-            task.taskInterval = 10
-        } else {
-            task.taskInterval += 1
-        }
+    @IBAction func intervalSliderMoved(_ sender: Any) {
+        task.taskInterval = Int(intervalSlider.value)
         self.intervalLabel.text = "\(task.taskInterval)"
     }
 
-    
-    @IBAction func intervalDecreaseTapped(_ sender: Any) {
-        if task.taskInterval <= 0 {
-            task.taskInterval = 0
+    @IBAction func recurringTaskSwitchTapped(_ sender: Bool) {
+        if recurringTaskSwitch.isOn {
+            task.isRecurring = true
         } else {
-            task.taskInterval -= 1
+            task.isRecurring = false
         }
-        self.intervalLabel.text = "\(task.taskInterval)"
     }
-    
     
     @IBAction func saveTapped(_ sender: Any) {
         
-        let editedTask = PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey)
+        let editedTask = PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: Date(), isRecurring: self.task.isRecurring)
         
-        let task = ["Task Name":editedTask.taskName,"Task Info":editedTask.taskInfo,"Task Priority":editedTask.taskPriority,"Task Interval":editedTask.taskInterval] as [String : Any]
+        //Task date is not included in the task edit so the date is not overwritten
+        
+        let task = ["Task Name":editedTask.taskName,"Task Info":editedTask.taskInfo,"Task Priority":editedTask.taskPriority,"Task Interval":editedTask.taskInterval, "Last Increase":formattedDate,"Recurring":editedTask.isRecurring] as [String : Any]
         
         self.ref.child("users/\(user)/tasks/\(editedTask.taskKey)").updateChildValues(task)
         
