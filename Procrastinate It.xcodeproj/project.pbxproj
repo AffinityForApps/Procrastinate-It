@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B9E875355CCCC0A46B40CBE /* Pods_Procrastinate_It.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FCC2899E4A4774BFE9D571 /* Pods_Procrastinate_It.framework */; };
+		62D50D561E76171F002B88BA /* NewEmailUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D50D551E76171E002B88BA /* NewEmailUserVC.swift */; };
 		62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E842F61E5FE4F7007E40F5 /* AppDelegate.swift */; };
 		62E842FC1E5FE4F9007E40F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E842FA1E5FE4F9007E40F5 /* Main.storyboard */; };
 		62E842FE1E5FE4FB007E40F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62E842FD1E5FE4FB007E40F5 /* Assets.xcassets */; };
@@ -25,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		06FCC2899E4A4774BFE9D571 /* Pods_Procrastinate_It.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Procrastinate_It.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62D50D541E74C903002B88BA /* Procrastinate It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Procrastinate It.entitlements"; sourceTree = "<group>"; };
+		62D50D551E76171E002B88BA /* NewEmailUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEmailUserVC.swift; sourceTree = "<group>"; };
 		62E842F31E5FE4F5007E40F5 /* Procrastinate It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Procrastinate It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E842F61E5FE4F7007E40F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62E842FB1E5FE4F9007E40F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 		62E842F51E5FE4F6007E40F5 /* Procrastinate It */ = {
 			isa = PBXGroup;
 			children = (
+				62D50D541E74C903002B88BA /* Procrastinate It.entitlements */,
 				62E8430A1E5FE5D4007E40F5 /* Model */,
 				62E843091E5FE5C6007E40F5 /* View */,
 				62E843081E5FE5B5007E40F5 /* Controller */,
@@ -94,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				62E843111E61D173007E40F5 /* SignUpInVC.swift */,
+				62D50D551E76171E002B88BA /* NewEmailUserVC.swift */,
 				62E8431D1E644524007E40F5 /* ProcrastinateVC.swift */,
 				62E8430D1E5FEDAA007E40F5 /* AddTaskVC.swift */,
 				62E843191E62C672007E40F5 /* EditTaskVC.swift */,
@@ -173,6 +178,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5ZR8E9ADDM;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -268,6 +278,7 @@
 				62E8431C1E643F33007E40F5 /* MaterialView.swift in Sources */,
 				62E8430E1E5FEDAA007E40F5 /* AddTaskVC.swift in Sources */,
 				62E8431A1E62C672007E40F5 /* EditTaskVC.swift in Sources */,
+				62D50D561E76171F002B88BA /* NewEmailUserVC.swift in Sources */,
 				62E843121E61D173007E40F5 /* SignUpInVC.swift in Sources */,
 				62E843161E6282EF007E40F5 /* PICell.swift in Sources */,
 			);
@@ -393,7 +404,12 @@
 			baseConfigurationReference = E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Procrastinate It/Procrastinate It.entitlements";
 				DEVELOPMENT_TEAM = 5ZR8E9ADDM;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Procrastinate It/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AffinityforApps.Procrastinate-It";
@@ -407,7 +423,12 @@
 			baseConfigurationReference = E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Procrastinate It/Procrastinate It.entitlements";
 				DEVELOPMENT_TEAM = 5ZR8E9ADDM;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Procrastinate It/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AffinityforApps.Procrastinate-It";

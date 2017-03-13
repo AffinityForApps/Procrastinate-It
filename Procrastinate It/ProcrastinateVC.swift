@@ -15,6 +15,7 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+
     
     //For date manipulation
     var currentDate = Date()
@@ -188,6 +189,9 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.taskLabel?.text = task.taskName
             cell.priorityLabel?.text = "\(task.taskPriority)"
             cell.detailsLabel?.text = task.taskInfo
+            if task.taskPriority >= 10 {
+                cell.cellView.layer.shadowColor = UIColor(red: 0.99, green: 0.06, blue: 0.06, alpha: 0.70).cgColor
+            }
             return cell
             
         }
@@ -248,6 +252,14 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        didLogOut = true
+        facebookLoginSuccess = false
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
