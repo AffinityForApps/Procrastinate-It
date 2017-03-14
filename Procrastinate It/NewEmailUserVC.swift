@@ -56,7 +56,7 @@ class NewEmailUserVC: UIViewController {
         FIRAuth.auth()?.createUser(withEmail: self.emailTF.text!.lowercased(), password: self.passwordTF.text!, completion: { (user, error) in
             print("We tried to create a user")
             
-            //After account is created, sign the user in
+            //Error handling
             
             if error != nil {
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code){

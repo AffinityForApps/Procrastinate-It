@@ -34,7 +34,7 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.dataSource = self
         tableView.delegate = self
         
-        //Case-sensitivity is important (eg. if mm is put instead of MM for the month, it will return minutes instead)
+        //Case-sensitivity is important for date/time format (eg. if mm is put instead of MM for the month, it will return minutes instead)
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
     
@@ -49,26 +49,7 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             self.tasks.append(task)
             
-            /* 
-            Date hack to increase taskPriority by taskInterval for each day passed..
-            */
-            var index = 0
-            for task in self.tasks{
-                if task.lastIncrease != self.currentDate {
-                    let days = (self.currentDate.timeIntervalSince(task.lastIncrease)/Double(self.secondsInDay)) - 1
-                    if days > 1 {
-                        task.taskPriority += task.taskInterval * Int(days)
-                        if task.taskPriority >= 10{
-                            task.taskPriority = 10
-                        }
-                        task.lastIncrease = self.currentDate
-                        self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Last Increase").setValue(self.dateFormatter.string(from: task.lastIncrease))
-                        self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Task Priority").setValue(task.taskPriority)
-                    }
-                    
-                }
-                index += 1
-            }
+            self.increaseTaskPriority()
 
             //sorts in descending order by task priority, contrary to what the comparison operator would have you believe
             self.tasks.sort(by: {$1.taskPriority < $0.taskPriority})
@@ -99,23 +80,7 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             self.tasks.append(task)
             
-            index = 0
-            for task in self.tasks{
-                if task.lastIncrease != self.currentDate {
-                    let days = self.currentDate.timeIntervalSince(task.lastIncrease)/Double(self.secondsInDay)
-                    if days > 1 {
-                        task.taskPriority += task.taskInterval * Int(days)
-                        if task.taskPriority >= 10{
-                            task.taskPriority = 10
-                        }
-                        task.lastIncrease = self.currentDate
-                        self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Last Increase").setValue(self.dateFormatter.string(from: task.lastIncrease))
-                        self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Task Priority").setValue(task.taskPriority)
-                    }
-                    
-                }
-                index += 1
-            }
+            self.increaseTaskPriority()
             
             //sorts in descending order, contrary to what the comparison operator would have you believe
             self.tasks.sort(by: {$1.taskPriority < $0.taskPriority})
@@ -134,32 +99,38 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 index += 1
             }
             
+            self.increaseTaskPriority()
+            
             //sorts in descending order, contrary to what the comparison operator would have you believe
-            
-            index = 0
-            for task in self.tasks{
-                if task.lastIncrease != self.currentDate {
-                    let days = self.currentDate.timeIntervalSince(task.lastIncrease)/Double(self.secondsInDay)
-                    if days > 1 {
-                        task.taskPriority += task.taskInterval * Int(days)
-                        if task.taskPriority >= 10{
-                            task.taskPriority = 10
-                        }
-                        task.lastIncrease = self.currentDate
-                        self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Last Increase").setValue(self.dateFormatter.string(from: task.lastIncrease))
-                        self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Task Priority").setValue(task.taskPriority)
-                    }
-                    
-                }
-                index += 1
-            }
-            
             self.tasks.sort(by: {$1.taskPriority < $0.taskPriority})
             self.tableView.reloadData()
         })
 
         self.tableView.reloadData()
     }
+    /*
+     Date manipulation to increase taskPriority by taskInterval for each day passed..
+     */
+    func increaseTaskPriority(){
+        var index = 0
+        for task in self.tasks{
+            if task.lastIncrease != self.currentDate {
+                let days = self.currentDate.timeIntervalSince(task.lastIncrease)/Double(self.secondsInDay)
+                if days > 1 {
+                    task.taskPriority += task.taskInterval * Int(days)
+                    if task.taskPriority >= 10{
+                        task.taskPriority = 10
+                    }
+                    task.lastIncrease = self.currentDate
+                    self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Last Increase").setValue(self.dateFormatter.string(from: task.lastIncrease))
+                    self.ref.child("users/\(self.user)/tasks/\(task.taskKey)/Task Priority").setValue(task.taskPriority)
+                }
+                
+            }
+            index += 1
+        }
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

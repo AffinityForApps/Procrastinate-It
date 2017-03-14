@@ -42,35 +42,36 @@ class AddTaskVC: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formattedDate = dateFormatter.string(from: currentDate)
         
-        self.taskTitleField.text = ""
-        self.taskDetailsField.text = ""
-        self.priorityLabel.text = "\(priority)"
-        self.intervalLabel.text = "\(interval)"
+        taskTitleField.text = ""
+        taskDetailsField.text = ""
+        priorityLabel.text = "\(priority)"
+        intervalLabel.text = "\(interval)"
         prioritySlider.value = 0
         intervalSlider.value = 0
         recurringTaskSwitch.isOn = false
+        
+        //Remove previous VC Navbar title from back button
+        if let topItem = self.navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
     }
     
     @IBAction func prioritySliderMoved(_ sender: Any) {
         priority = Int(prioritySlider.value)
-        self.priorityLabel.text = "\(Int(prioritySlider.value))"
+        self.priorityLabel.text = "\(priority)"
     }
     
     @IBAction func intervalSliderMoved(_ sender: Any) {
         interval = Int(intervalSlider.value)
-        self.intervalLabel.text = "\(Int(intervalSlider.value))"
+        self.intervalLabel.text = "\(interval)"
     }
     
     
     @IBAction func recurringTaskSwitchTapped(_ sender: Any) {
         if recurringTaskSwitch.isOn {
-//            recurringTaskSwitch.setOn(false, animated: true)
             isRecurring = true
-            print(isRecurring)
         } else {
-//            recurringTaskSwitch.setOn(true, animated: true)
             isRecurring = false
-            print(isRecurring)
         }
     }
 
@@ -83,7 +84,7 @@ class AddTaskVC: UIViewController {
         
         self.ref.child("users/\(user)/tasks").childByAutoId().setValue(task)
         
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
     }
 
 }

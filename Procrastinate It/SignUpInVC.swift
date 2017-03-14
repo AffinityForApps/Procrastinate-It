@@ -64,10 +64,9 @@ class SignUpInVC: UIViewController {
         FIRAuth.auth()?.signIn(withEmail: usernameField.text!.lowercased(), password: passwordField.text!, completion: { (user, error) in
             print("We tried to sign in")
             
-            //If user does not have an account create one
+            //Potential error codes and user prompts
             
             if error != nil {
-                print("Hey we have an error:\(error)")
                 
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code){
                     switch errCode {
@@ -86,7 +85,7 @@ class SignUpInVC: UIViewController {
                     }
                 }
                 
-                //If user does have an account, sign them in
+            //Else present them with the primary screen
                 
             } else {
                 print("We Signed In")

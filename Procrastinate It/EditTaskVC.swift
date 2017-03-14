@@ -43,6 +43,11 @@ class EditTaskVC: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formattedDate = dateFormatter.string(from: Date())
         
+        //Remove previous VC Navbar title from back button
+        if let topItem = self.navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        
     }
 
     
@@ -75,7 +80,7 @@ class EditTaskVC: UIViewController {
         
         self.ref.child("users/\(user)/tasks/\(editedTask.taskKey)").updateChildValues(task)
         
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
         
     }
 
