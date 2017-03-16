@@ -27,8 +27,7 @@ class SignUpInVC: UIViewController {
         super.viewDidLoad()
         
         //Autofilling my sign in data while building and testing
-        usernameField.text = "steven@steven.com"
-        passwordField.text = "asdf123"
+
         emailSignInStackView.isHidden = true
         
     }

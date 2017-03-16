@@ -50,10 +50,14 @@ class AddTaskVC: UIViewController {
         intervalSlider.value = 0
         recurringTaskSwitch.isOn = false
         
-        //Remove previous VC Navbar title from back button
-        if let topItem = self.navigationController?.navigationBar.topItem {
-            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        //Remove previous VC Navbar title from back button and set color
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationBar.tintColor = UIColor(red: 0.29, green: 0.65, blue: 0.65, alpha: 1.0)
+            if let topItem = navigationBar.topItem {
+                topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            }
         }
+        
     }
     
     @IBAction func prioritySliderMoved(_ sender: Any) {
