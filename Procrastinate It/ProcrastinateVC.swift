@@ -45,7 +45,14 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             //Initializing task with Firebase data
             
-            let task = PITask(taskName: snapshotDictionary!["Task Name"] as! String, taskInfo: snapshotDictionary!["Task Info"] as! String, taskPriority: snapshotDictionary!["Task Priority"] as! Int, taskInterval: snapshotDictionary!["Task Interval"] as! Int, taskKey: snapshot.key, taskDate: self.dateFormatter.date(from: snapshotDictionary!["Task Date"] as! String)! as Date, lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date, isRecurring: snapshotDictionary!["Recurring"] as! Bool)
+            let task = PITask(taskName: snapshotDictionary!["Task Name"] as! String,
+                              taskInfo: snapshotDictionary!["Task Info"] as! String,
+                              taskPriority: snapshotDictionary!["Task Priority"] as! Int,
+                              taskInterval: snapshotDictionary!["Task Interval"] as! Int,
+                              taskKey: snapshot.key,
+                              taskDate: self.dateFormatter.date(from: snapshotDictionary!["Task Date"] as! String)! as Date,
+                              lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date,
+                              isRecurring: snapshotDictionary!["Recurring"] as! Bool)
             
             self.tasks.append(task)
             
@@ -76,7 +83,14 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             //Initializing task with Firebase data
             
-            let task = PITask(taskName: snapshotDictionary!["Task Name"] as! String, taskInfo: snapshotDictionary!["Task Info"] as! String, taskPriority: snapshotDictionary!["Task Priority"] as! Int, taskInterval: snapshotDictionary!["Task Interval"] as! Int, taskKey: snapshot.key, taskDate: self.dateFormatter.date(from:snapshotDictionary!["Task Date"] as! String)!, lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date, isRecurring: snapshotDictionary!["Recurring"] as! Bool)
+            let task = PITask(taskName: snapshotDictionary!["Task Name"] as! String,
+                              taskInfo: snapshotDictionary!["Task Info"] as! String,
+                              taskPriority: snapshotDictionary!["Task Priority"] as! Int,
+                              taskInterval: snapshotDictionary!["Task Interval"] as! Int,
+                              taskKey: snapshot.key,
+                              taskDate: self.dateFormatter.date(from:snapshotDictionary!["Task Date"] as! String)!,
+                              lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date,
+                              isRecurring: snapshotDictionary!["Recurring"] as! Bool)
             
             self.tasks.append(task)
             
@@ -106,7 +120,6 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.tableView.reloadData()
         })
 
-        self.tableView.reloadData()
     }
     /*
      Date manipulation to increase taskPriority by taskInterval for each day passed..
@@ -151,6 +164,7 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if tasks.count == 0 {
             
             cell.taskLabel?.text = "You currently have no tasks"
+            cell.detailsLabel?.text = ""
             cell.priorityLabel?.text = ""
             return cell
             
@@ -162,11 +176,15 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.detailsLabel?.text = task.taskInfo
             if task.taskPriority >= 10 {
                 cell.cellView.layer.shadowColor = UIColor(red: 0.99, green: 0.06, blue: 0.06, alpha: 0.70).cgColor
+            } else {
+                cell.cellView.layer.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.90).cgColor
             }
             return cell
             
         }
     }
+    
+    
     
     //Provides the user permission to swipe left to select option to delete
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -186,16 +204,21 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     //Allows the user to swipe left to select the option to delete
     //This will need to be revisted when the UI is overhauled
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             let task = tasks[indexPath.row]
             if task.isRecurring{
                 self.ref.child("users/\(user)/tasks/\(task.taskKey)/Task Priority").setValue(0)
                 self.tableView.reloadData()
+                
             } else if !task.isRecurring{
                 self.ref.child("users/\(user)/tasks/\(task.taskKey)").removeValue()
                 self.tableView.reloadData()
+                
             }
+            
         }
+        
     }
     
     //Activates segue to EditTaskVC
@@ -228,9 +251,10 @@ class ProcrastinateVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     @IBAction func logoutTapped(_ sender: Any) {
-        didLogOut = true
         facebookLoginSuccess = false
+        didLogOut = true
         self.dismiss(animated: true, completion: nil)
     }
+    
     
 }

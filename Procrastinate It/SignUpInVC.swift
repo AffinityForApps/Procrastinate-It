@@ -23,6 +23,7 @@ class SignUpInVC: UIViewController {
     @IBOutlet weak var emailSignInStackView: UIStackView!
     @IBOutlet weak var newUser: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +34,15 @@ class SignUpInVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if (FBSDKAccessToken.current() != nil && facebookLoginSuccess){
+        
+        if let alreadySignedIn = FIRAuth.auth()?.currentUser {
+            if didLogOut == false {
+                procrastinateIt()
+            }
+            
+        }
+        
+        if (FBSDKAccessToken.current() != nil && facebookLoginSuccess) {
             procrastinateIt()
         }
         if didLogOut {
@@ -90,6 +99,8 @@ class SignUpInVC: UIViewController {
                 print("We Signed In")
                 self.emailSignInStackView.isHidden = true
                 self.emailLogin.isHidden = false
+                self.usernameField.text = ""
+                self.passwordField.text = ""
                 self.procrastinateIt()
             }
             
