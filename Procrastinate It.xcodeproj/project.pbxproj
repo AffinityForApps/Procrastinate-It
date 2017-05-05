@@ -176,7 +176,7 @@
 				TargetAttributes = {
 					62E842F21E5FE4F5007E40F5 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5ZR8E9ADDM;
+						DevelopmentTeam = EWSMAH6SD7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -405,12 +405,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Procrastinate It/Procrastinate It.entitlements";
-				DEVELOPMENT_TEAM = 5ZR8E9ADDM;
+				DEVELOPMENT_TEAM = EWSMAH6SD7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Procrastinate It/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AffinityforApps.Procrastinate-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,12 +425,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Procrastinate It/Procrastinate It.entitlements";
-				DEVELOPMENT_TEAM = 5ZR8E9ADDM;
+				DEVELOPMENT_TEAM = EWSMAH6SD7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Procrastinate It/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AffinityforApps.Procrastinate-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";

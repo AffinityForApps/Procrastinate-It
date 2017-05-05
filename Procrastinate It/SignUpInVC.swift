@@ -35,7 +35,7 @@ class SignUpInVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if let alreadySignedIn = FIRAuth.auth()?.currentUser {
+        if (FIRAuth.auth()?.currentUser) != nil {
             if didLogOut == false {
                 procrastinateIt()
             }
@@ -89,7 +89,7 @@ class SignUpInVC: UIViewController {
                         self.alertUserError(title: "No account found", message: "Please verify that your email is correct or create a new account to continue")
                         
                     default:
-                        print("\(error)")
+                        print("\(String(describing: error))")
                     }
                 }
                 

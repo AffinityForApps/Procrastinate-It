@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ajj-K8-bux">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ajj-K8-bux">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -423,7 +423,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="0.90047089041095896" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="vN1-cK-AqK" secondAttribute="trailing" constant="8" id="Dyh-jG-4Q6"/>
                                                         <constraint firstItem="gz0-kX-bMz" firstAttribute="top" secondItem="IZP-N5-8ay" secondAttribute="bottom" constant="2" id="Qcr-hW-mPC"/>
@@ -530,7 +530,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="80.666666666666657"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADj-hU-G2u">
-                                                        <rect key="frame" x="69.666666666666671" y="0.0" width="110.33333333333333" height="35.666666666666671"/>
+                                                        <rect key="frame" x="69.999999999999986" y="0.0" width="110.33333333333333" height="35.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="26"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -623,7 +623,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N28-J0-Sg1">
-                                                        <rect key="frame" x="72.333333333333329" y="33.333333333333314" width="51" height="31.000000000000057"/>
+                                                        <rect key="frame" x="72.666666666666671" y="33.333333333333314" width="51" height="31.000000000000057"/>
                                                         <color key="onTintColor" red="0.25709348920000002" green="0.6458227634" blue="0.64508837460000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="recurringTaskSwitchTapped:" destination="WWJ-bU-NdP" eventType="valueChanged" id="65j-rl-OHO"/>

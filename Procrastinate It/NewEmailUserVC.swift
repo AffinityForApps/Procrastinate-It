@@ -73,7 +73,7 @@ class NewEmailUserVC: UIViewController {
                         self.alertUserError(title: "Invalid email", message: "Please verify that your email is correct")
                     
                     default:
-                        print("\(error)")
+                        print("\(String(describing: error))")
                     }
                 }
 

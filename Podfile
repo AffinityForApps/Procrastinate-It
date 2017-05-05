@@ -8,9 +8,8 @@ target 'Procrastinate It' do
   pod 'Firebase/Auth'
   pod 'IQKeyboardManagerSwift'
   use_frameworks!
+  # Pods for Procrastinate It
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
-  # Pods for Procrastinate It
-
 end
