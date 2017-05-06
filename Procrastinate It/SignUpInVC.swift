@@ -4,7 +4,7 @@
 //
 //  Created by Steven Sherry on 2/25/17.
 //  Copyright © 2017 Affinity for Apps. All rights reserved.
-//  Testing
+//  
 
 import UIKit
 import Firebase
