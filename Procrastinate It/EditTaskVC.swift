@@ -27,8 +27,6 @@ class EditTaskVC: UIViewController {
     
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()!.currentUser!.uid
-    let dateFormatter = DateFormatter()
-    var formattedDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +39,6 @@ class EditTaskVC: UIViewController {
         prioritySlider.value = Float(task.taskPriority)
         intervalSlider.value = Float(task.taskInterval)
         recurringTaskSwitch.isOn = task.isRecurring
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        formattedDate = dateFormatter.string(from: Date())
         
         //Remove previous VC Navbar title from back button
         if let navigationBar = self.navigationController?.navigationBar {
@@ -52,13 +48,11 @@ class EditTaskVC: UIViewController {
                 topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             }
         }
-        
     }
 
     @IBAction func prioritySliderMoved(_ sender: Any) {
         task.taskPriority = Int(prioritySlider.value)
         self.priorityLabel.text = "\(task.taskPriority)"
-        
     }
     
     @IBAction func intervalSliderMoved(_ sender: Any) {
@@ -75,17 +69,8 @@ class EditTaskVC: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        //If task.taskKey is an empty string that means it's a new task and doesn't have an existing record
-        //I may actually change the .addTask and .editTask into one .uploadTask method and just have it check
-        //For an empty string in the method itself so I can eliminate the code block
-        if task.taskKey == "" {
-            DataService.instance.addTask(user: user, ref: ref, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: self.task.isRecurring)))
-        } else {
-            DataService.instance.editTask(user: user, ref: ref, taskKey: task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: Date(), isRecurring: self.task.isRecurring)))
-        }
+        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: self.task.lastIncrease, isRecurring: self.task.isRecurring)))
         
         _ = navigationController?.popToRootViewController(animated: true)
-        
     }
-
 }

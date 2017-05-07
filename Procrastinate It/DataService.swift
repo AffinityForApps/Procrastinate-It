@@ -27,7 +27,7 @@ class DataService {
     
     static var tasks: [PITask] = []
     
-    func getTasks(user: String, ref: FIRDatabaseReference){
+    func getTasks(user: String, ref: FIRDatabaseReference) {
         //Case-sensitivity is important for date/time format (eg. if mm is put instead of MM for the month, it will return minutes instead)
         DataService.tasks.removeAll()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -106,18 +106,16 @@ class DataService {
                 }
                 index += 1
             }
-            
             self.increaseTaskPriority(user: user, ref: ref)
             
             //sorts in descending order, contrary to what the comparison operator would have you believe
             DataService.tasks.sort(by: {$1.taskPriority < $0.taskPriority})
             self.delegate?.tasksLoaded()
         })
-        
     }
     
     // Date manipulation to increase taskPriority by taskInterval for each day passed..
-    func increaseTaskPriority(user: String, ref: FIRDatabaseReference){
+    func increaseTaskPriority(user: String, ref: FIRDatabaseReference) {
         var index = 0
         for task in DataService.tasks{
             if task.lastIncrease != self.currentDate {
@@ -131,7 +129,6 @@ class DataService {
                     ref.child("users/\(user)/tasks/\(task.taskKey)/Last Increase").setValue(self.dateFormatter.string(from: task.lastIncrease))
                     ref.child("users/\(user)/tasks/\(task.taskKey)/Task Priority").setValue(task.taskPriority)
                 }
-                
             }
             index += 1
         }
@@ -149,19 +146,22 @@ class DataService {
         }
     }
     
-    func addTask(user: String, ref: FIRDatabaseReference, firTask: Dictionary<String, Any>){
-        ref.child("users/\(user)/tasks").childByAutoId().setValue(firTask)
+    //Previously had this in two separate functions "addTask" and "editTask"; consolidated for caller brevity
+    func uploadTask(user: String, ref: FIRDatabaseReference, taskKey: String, firTask: Dictionary<String, Any>) {
+        if taskKey == "" {
+            ref.child("users/\(user)/tasks").childByAutoId().setValue(firTask)
+        } else {
+            ref.child("users/\(user)/tasks/\(taskKey)").updateChildValues(firTask)
+        }
     }
     
-    func editTask(user: String, ref: FIRDatabaseReference, taskKey: String, firTask: Dictionary<String, Any>){
-        ref.child("users/\(user)/tasks/\(taskKey)").updateChildValues(firTask)
-    }
-    
-    func prepareForFirebaseUpload(user: String, ref: FIRDatabaseReference, task: PITask) -> Dictionary<String, Any>{
+    func prepareForFirebaseUpload(user: String, ref: FIRDatabaseReference, task: PITask) -> Dictionary<String, Any> {
+        //Firebase cannot take Date as a value so it has to be converted to a string.
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let formattedDate = dateFormatter.string(from: currentDate)
-        let task = ["Task Name":task.taskName,"Task Info":task.taskInfo,"Task Priority":task.taskPriority,"Task Interval":task.taskInterval, "Task Date": formattedDate, "Last Increase":formattedDate,"Recurring": task.isRecurring] as Dictionary<String, Any>
-        return task
+        let formattedTaskDate = dateFormatter.string(from: task.taskDate)
+        let formattedLastIncrease = dateFormatter.string(from: task.lastIncrease)
+        let firTask = ["Task Name":task.taskName,"Task Info":task.taskInfo,"Task Priority":task.taskPriority,"Task Interval":task.taskInterval, "Task Date": formattedTaskDate, "Last Increase":formattedLastIncrease,"Recurring": task.isRecurring] as Dictionary<String, Any>
+        return firTask
     }
     
     /*
@@ -171,7 +171,7 @@ class DataService {
     when a new task ws created but it was relatively unpredictable because it wouldn't happen every time, 
     which made it even more difficult to figure out. This fix will have to do for now.
     */
-    func nonDuplicateTaskVerification(task: PITask){
+    func nonDuplicateTaskVerification(task: PITask) {
         let alreadyInArray = DataService.tasks.contains(where: { (inArray) -> Bool in
             if inArray.taskKey == task.taskKey {
                 return true
@@ -179,12 +179,10 @@ class DataService {
                 return false
             }
         })
-        
         if !alreadyInArray {
             DataService.tasks.append(task)
         } else {
             print("Already in array and didn't append")
         }
     }
-    
 }
