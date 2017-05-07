@@ -151,7 +151,6 @@ class DataService {
     
     func addTask(user: String, ref: FIRDatabaseReference, firTask: Dictionary<String, Any>){
         ref.child("users/\(user)/tasks").childByAutoId().setValue(firTask)
-//        self.delegate?.tasksLoaded()
     }
     
     func editTask(user: String, ref: FIRDatabaseReference, taskKey: String, firTask: Dictionary<String, Any>){
@@ -165,6 +164,13 @@ class DataService {
         return task
     }
     
+    /*
+    This handles a bug where a task was being appended to DataService.tasks multiple times, even though
+    it wasn't created in Firebase multiple times. I wasn't able to exactly nail down where and why it was 
+    happening, so this method was created to keep it from happening. The bug would typically only occur
+    when a new task ws created but it was relatively unpredictable because it wouldn't happen every time, 
+    which made it even more difficult to figure out. This fix will have to do for now.
+    */
     func nonDuplicateTaskVerification(task: PITask){
         let alreadyInArray = DataService.tasks.contains(where: { (inArray) -> Bool in
             if inArray.taskKey == task.taskKey {

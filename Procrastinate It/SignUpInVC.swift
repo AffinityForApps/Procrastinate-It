@@ -30,17 +30,16 @@ class SignUpInVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        //The next two blocks check to see if the user is currently autheticated and segues if they are
         if (FIRAuth.auth()?.currentUser) != nil {
             if didLogOut == false {
                 procrastinateIt()
             }
         }
-        
         if (FBSDKAccessToken.current() != nil && facebookLoginSuccess) {
             procrastinateIt()
         }
-        
+        //Checks if the user logged out and performs the logout function
         if didLogOut {
             logOut()
         }
@@ -50,7 +49,8 @@ class SignUpInVC: UIViewController {
     @IBAction func facebookTapped(_ sender: Any) {
         AuthService.instance.facebookSignIn(viewController: self)
     }
- 
+    
+    //Should have renamed this to signInTapped; there is no single sign-in/up action
     @IBAction func signUpInTapped(_ sender: Any) {
         
         AuthService.instance.existingEmailUser(email: usernameField.text!.lowercased(), password: passwordField.text!) { (success) in
@@ -65,7 +65,6 @@ class SignUpInVC: UIViewController {
             }
         }
     }
-    
     
     @IBAction func emailLoginTapped(_ sender: Any) {
         emailLogin.isHidden = true

@@ -21,6 +21,7 @@ class ProcrastinateVC: UIViewController {
     let dataService = DataService.instance
     
     override func viewWillAppear(_ animated: Bool) {
+        //This removes all the PITasks from the static array, otherwise the local array adds duplicates
         DataService.tasks.removeAll()
         dataService.getTasks(user: user, ref: ref)
     }
@@ -31,7 +32,6 @@ class ProcrastinateVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         dataService.delegate = self
-//        dataService.getTasks(user: user, ref: ref)
         
     }
     
@@ -43,6 +43,7 @@ class ProcrastinateVC: UIViewController {
     }
     
     @IBAction func addTapped(_ sender: Any) {
+        //Sends a blank task to EditTaskVC to avoid a crash
         let blankTask = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
         performSegue(withIdentifier: "editSegue", sender: blankTask)
    }
@@ -104,12 +105,10 @@ extension ProcrastinateVC: UITableViewDelegate, UITableViewDataSource {
     
     //Allows the user to swipe left to select the option to delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             let task = DataService.tasks[indexPath.row]
             self.dataService.deleteOrResetTask(user: self.user, ref: self.ref, task: task)
         }
-        
     }
     
     //Activates segue to EditTaskVC

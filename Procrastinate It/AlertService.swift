@@ -12,10 +12,11 @@ import UIKit
 class AlertService {
     
     static let instance = AlertService()
-    var alertController = UIAlertController(title: "Uknown Error", message: "Please check your username and password and try again", preferredStyle: .alert)
+    var alertController = UIAlertController(title: "Unknown Error", message: "Please check your username and password and try again", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
     
-    
+    //May change this to just work with the standard Firebase error codes directly
+    //instead of converting them to work with AlertEnum
     func alertUserError(withError error: AlertEnum) -> UIAlertController {
         
         switch error {

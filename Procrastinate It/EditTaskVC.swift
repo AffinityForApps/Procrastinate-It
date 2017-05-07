@@ -33,6 +33,7 @@ class EditTaskVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Sets the UI's visual data whether a new task or existing task
         taskTitleField.text = task.taskName
         taskDetailsField.text = task.taskInfo
         priorityLabel.text = "\(task.taskPriority)"
@@ -45,6 +46,7 @@ class EditTaskVC: UIViewController {
         
         //Remove previous VC Navbar title from back button
         if let navigationBar = self.navigationController?.navigationBar {
+            //Set back button color to compliment the app color scheme
             navigationBar.tintColor = UIColor(red: 0.29, green: 0.65, blue: 0.65, alpha: 1.0)
             if let topItem = navigationBar.topItem {
                 topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -73,9 +75,11 @@ class EditTaskVC: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        
+        //If task.taskKey is an empty string that means it's a new task and doesn't have an existing record
+        //I may actually change the .addTask and .editTask into one .uploadTask method and just have it check
+        //For an empty string in the method itself so I can eliminate the code block
         if task.taskKey == "" {
-            DataService.instance.addTask(user: user, ref: ref, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: taskTitleField.text!, taskInfo: taskDetailsField.text!, taskPriority: task.taskPriority, taskInterval: task.taskInterval, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: task.isRecurring)))
+            DataService.instance.addTask(user: user, ref: ref, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: self.task.isRecurring)))
         } else {
             DataService.instance.editTask(user: user, ref: ref, taskKey: task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: Date(), isRecurring: self.task.isRecurring)))
         }

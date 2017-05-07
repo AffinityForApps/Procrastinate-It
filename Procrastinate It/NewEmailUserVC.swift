@@ -26,6 +26,9 @@ class NewEmailUserVC: UIViewController {
 
     }
     
+    //This dismisses the view controller in the event that a new user signs up and then logs out
+    //Without utilizing viewDidAppear, the logout action in ProcrastinateVC would bring th user 
+    //back to this view controller.
     override func viewDidAppear(_ animated: Bool) {
         if didLogOut == true {
             self.dismiss(animated: true, completion: nil)
@@ -41,8 +44,8 @@ class NewEmailUserVC: UIViewController {
     }
     
     func newUserSignUp(){
-        
-        AuthService.instance.createNewUser(email: emailTF.text!.lowercased(), password: self.passwordTF.text!, verifyPassword: self.confirmPasswordTF.text!) { (success) in
+        AuthService.instance.createNewUser(email: emailTF.text!.lowercased(), password: self.passwordTF.text!,
+                                           verifyPassword: self.confirmPasswordTF.text!) { (success) in
             if !success {
                 self.present(alert, animated: true, completion: nil)
             } else {

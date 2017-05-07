@@ -32,12 +32,14 @@ class PICell: UITableViewCell {
             taskLabel.text = task.taskName
             detailsLabel.text = task.taskInfo
             priorityLabel.text = "\(task.taskPriority)"
+            //Sets the shadow to red if taskPriority is 10
             if task.taskPriority >= 10 {
                 cellView.layer.shadowColor = UIColor(red: 0.99, green: 0.06, blue: 0.06, alpha: 0.70).cgColor
             } else {
                 cellView.layer.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.90).cgColor
             }
         } else {
+            //If there are no tasks then this is what appears
             taskLabel.text = "You currently have no tasks"
             detailsLabel.text = ""
             priorityLabel.text = ""
