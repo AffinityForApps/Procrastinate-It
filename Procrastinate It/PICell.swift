@@ -26,4 +26,23 @@ class PICell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func updateUI(cellTask: PITask?){
+        
+        if let task = cellTask {
+            taskLabel.text = task.taskName
+            detailsLabel.text = task.taskInfo
+            priorityLabel.text = "\(task.taskPriority)"
+            if task.taskPriority >= 10 {
+                cellView.layer.shadowColor = UIColor(red: 0.99, green: 0.06, blue: 0.06, alpha: 0.70).cgColor
+            } else {
+                cellView.layer.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.90).cgColor
+            }
+        } else {
+            taskLabel.text = "You currently have no tasks"
+            detailsLabel.text = ""
+            priorityLabel.text = ""
+        }
+        
+    }
+    
 }

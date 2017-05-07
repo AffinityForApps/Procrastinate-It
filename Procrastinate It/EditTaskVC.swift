@@ -53,7 +53,6 @@ class EditTaskVC: UIViewController {
         
     }
 
-    
     @IBAction func prioritySliderMoved(_ sender: Any) {
         task.taskPriority = Int(prioritySlider.value)
         self.priorityLabel.text = "\(task.taskPriority)"
@@ -75,13 +74,11 @@ class EditTaskVC: UIViewController {
     
     @IBAction func saveTapped(_ sender: Any) {
         
-        let editedTask = PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: Date(), isRecurring: self.task.isRecurring)
-        
-        //Task date is not included in the task edit so the date is not overwritten
-        
-        let task = ["Task Name":editedTask.taskName,"Task Info":editedTask.taskInfo,"Task Priority":editedTask.taskPriority,"Task Interval":editedTask.taskInterval, "Last Increase":formattedDate,"Recurring":editedTask.isRecurring] as [String : Any]
-        
-        self.ref.child("users/\(user)/tasks/\(editedTask.taskKey)").updateChildValues(task)
+        if task.taskKey == "" {
+            DataService.instance.addTask(user: user, ref: ref, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: taskTitleField.text!, taskInfo: taskDetailsField.text!, taskPriority: task.taskPriority, taskInterval: task.taskInterval, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: task.isRecurring)))
+        } else {
+            DataService.instance.editTask(user: user, ref: ref, taskKey: task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: Date(), isRecurring: self.task.isRecurring)))
+        }
         
         _ = navigationController?.popToRootViewController(animated: true)
         

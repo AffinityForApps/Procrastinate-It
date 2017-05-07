@@ -29,7 +29,7 @@ class AuthService {
                 }
                 completion(false)
             } else {
-                print("We signed in")
+                print("We signed in with \(String(describing: user!.email))")
                 completion(true)
             }
             
@@ -92,13 +92,11 @@ class AuthService {
             
         })
         
-        
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
             if err != nil {
                 print("failed to start graph request:", err as Any)
                 return
             }
-            
             print(result as Any)
         }
         
