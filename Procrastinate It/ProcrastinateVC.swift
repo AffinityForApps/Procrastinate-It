@@ -32,6 +32,8 @@ class ProcrastinateVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         dataService.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
     }
     
