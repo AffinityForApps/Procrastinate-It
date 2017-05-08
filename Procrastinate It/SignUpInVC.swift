@@ -19,6 +19,7 @@ class SignUpInVC: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var facebookLogin: UIButton!
     @IBOutlet weak var emailLogin: UIButton!
+    @IBOutlet weak var anonymousLogin: UIButton!
     @IBOutlet weak var emailSignInStackView: UIStackView!
     @IBOutlet weak var newUser: UIButton!
     
@@ -68,7 +69,18 @@ class SignUpInVC: UIViewController {
     
     @IBAction func emailLoginTapped(_ sender: Any) {
         emailLogin.isHidden = true
+        anonymousLogin.isHidden = true
         emailSignInStackView.isHidden = false
+    }
+    
+    @IBAction func anonymoustLoginTapped(_ sender: Any) {
+        AuthService.instance.anonymousSignIn { (success) in
+            if !success {
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.procrastinateIt()
+            }
+        }
     }
     
     @IBAction func newUserTapped(_ sender: Any) {

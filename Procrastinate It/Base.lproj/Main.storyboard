@@ -50,7 +50,7 @@
                                 <rect key="frame" x="0.0" y="296" width="414" height="440"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Y7-y1-iWf">
-                                        <rect key="frame" x="2" y="35" width="410" height="141"/>
+                                        <rect key="frame" x="2" y="35" width="410" height="183"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIX-B4-UD5">
                                                 <rect key="frame" x="0.0" y="0.0" width="410" height="65"/>
@@ -64,6 +64,14 @@
                                                 <state key="normal" image="Email Sign In"/>
                                                 <connections>
                                                     <action selector="emailLoginTapped:" destination="Ajj-K8-bux" eventType="touchUpInside" id="iUv-ll-jHh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzk-Na-itz">
+                                                <rect key="frame" x="0.0" y="151" width="410" height="32"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                <state key="normal" title="I Don't Want to Create an Account"/>
+                                                <connections>
+                                                    <action selector="anonymoustLoginTapped:" destination="Ajj-K8-bux" eventType="touchUpInside" id="sRz-WS-qct"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -146,6 +154,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="anonymousLogin" destination="jzk-Na-itz" id="pBV-6w-hRT"/>
                         <outlet property="emailLogin" destination="siU-dw-ZFb" id="QTR-rV-Gyy"/>
                         <outlet property="emailSignInStackView" destination="3wX-MX-v2F" id="gvE-Dk-w4x"/>
                         <outlet property="facebookLogin" destination="TIX-B4-UD5" id="J99-tp-66Y"/>

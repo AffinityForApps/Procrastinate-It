@@ -102,6 +102,20 @@ class AuthService {
         
     }
     
+    func anonymousSignIn(completion: @escaping callback) {
+        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+            print("Attempting to create an anonymous user")
+            if error != nil {
+                print("There is an issue with anonymous login")
+                alert = AlertService.instance.customAlert(title: "Unable To Continue", message: "There is an issue with our anonymous login. Please try again.")
+                completion(false)
+            }
+            print("sucessfully logging with anonymoust user: ", user as Any)
+            FIRDatabase.database().reference().child("users").child(user!.uid)
+            completion(true)
+        })
+    }
+    
     func logOut(){
         let firebaseAuth = FIRAuth.auth()
         do {
