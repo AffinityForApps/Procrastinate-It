@@ -21,11 +21,8 @@ class AuthService {
             print("Attempting sign in")
             if error != nil {
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code){
-                    firebaseAuthStatusCode = errCode.rawValue
-                    print(firebaseAuthStatusCode)
-                    alert = AlertService.instance.alertUserError(withError: AlertEnum(rawValue: firebaseAuthStatusCode)!)
-                } else {
-                    firebaseAuthStatusCode = 0
+                    alert = AlertService.instance.alertUserError(withError: errCode)
+                    print(errCode)
                 }
                 completion(false)
             } else {
@@ -37,22 +34,16 @@ class AuthService {
     }
     
     func createNewUser(email: String, password: String, verifyPassword: String, completion: @escaping callback){
-        if email.isEmpty || password.isEmpty || verifyPassword.isEmpty {
-            alert = AlertService.instance.customAlert(title: "Form Incomplete", message: "Please fill in all fields to sign up for Procrastinate It")
-            completion(false)
-        } else if password != verifyPassword {
-            alert = AlertService.instance.customAlert(title: "Passwords Do Not Match", message: "Please try again")
+        if !emailFormCompleteAndCorrect(email: email, password: password, verifyPassword: verifyPassword) {
             completion(false)
         } else {
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                 print("Attempting to create a user")
                 if error != nil {
                     if let errCode = FIRAuthErrorCode(rawValue: error!._code){
-                        firebaseAuthStatusCode = errCode.rawValue
-                        print(firebaseAuthStatusCode)
-                        alert = AlertService.instance.alertUserError(withError: AlertEnum(rawValue: firebaseAuthStatusCode)!)
-                    } else {
-                        firebaseAuthStatusCode = 0
+                        alert = AlertService.instance.alertUserError(withError: errCode)
+                        print(errCode)
+                        
                     }
                     completion(false)
                 } else {
@@ -65,42 +56,20 @@ class AuthService {
         
     }
     
-    func facebookSignIn(viewController: UIViewController){
-        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: viewController) { (result, err) in
-            if err != nil {
-                print("FB Login failed", err as Any)
-                return
+    func facebookSignIn(viewController: UIViewController, completion: @escaping callback){
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: viewController) { (result, error) in
+            if error != nil {
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                    alert = AlertService.instance.alertUserError(withError: errCode)
+                    print(errCode)
+                }
             }
+            completion(false)
         }
-        facebookFirebaseSignInDetails()
+        facebookFirebaseSignInDetails { (success) in success ? completion(true) : completion(false) }
     }
     
-    func facebookFirebaseSignInDetails(){
-        let accessToken = FBSDKAccessToken.current()
-        guard let accessTokenString = accessToken?.tokenString else {return}
-        
-        let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
-        
-        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, err) in
-            if err != nil {
-                print("something went wrong with our FB user:", err as Any)
-            }
-            print("successfully logged in with our user: ", user as Any)
-            facebookLoginSuccess = true
-            //Creates database entry for user
-            FIRDatabase.database().reference().child("users").child(user!.uid).child("email").setValue(user!.email!)
-            
-        })
-        
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
-            if err != nil {
-                print("failed to start graph request:", err as Any)
-                return
-            }
-            print(result as Any)
-        }
-        
-    }
+
     
     func anonymousSignIn(completion: @escaping callback) {
         FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
@@ -116,14 +85,127 @@ class AuthService {
         })
     }
     
+    func convertAnonToFacebook(user: FIRUser, viewController: UIViewController, completion: @escaping callback) {
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: viewController) { (result, error) in
+            if error != nil {
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                    alert = AlertService.instance.alertUserError(withError: errCode)
+                    print(errCode)
+                }
+            }
+            completion(false)
+        }
+        if user.isAnonymous {
+            let accessToken = FBSDKAccessToken.current()
+            guard let accessTokenString = accessToken?.tokenString else {return}
+            let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
+            user.link(with: credentials, completion: { (user, error) in
+                if error != nil {
+                    alert = AlertService.instance.customAlert(title: "Error Connecting Account", message: "There has been an error connecting your account to Facebook. Please try again")
+                    completion(false)
+                } else {
+                    self.facebookGraphRequest(completion: { (success) in
+                        if success {
+                            alert = AlertService.instance.customAlert(title: "Success", message: "")
+                            FIRDatabase.database().reference().child("users").child(user!.uid).child("email").setValue(user!.email!)
+                            print("Anonymous user account successfully converted")
+                            completion(true)
+                        } else {
+                            print("Epic fail")
+                            completion(false)
+                        }
+                    })
+                    
+                }
+            })
+        } else {
+            print("User is not anonymous")
+        }
+    }
+    
+    func convertAnonToEmail(user: FIRUser, email: String, password: String, verifyPassword: String, completion: @escaping callback) {
+        if user.isAnonymous {
+            if !emailFormCompleteAndCorrect(email: email, password: password, verifyPassword: verifyPassword) {
+                completion(false)
+            } else {
+                let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
+                user.link(with: credential, completion: { (user, error) in
+                    if error != nil {
+                        if let errCode = FIRAuthErrorCode(rawValue: error!._code){
+                            alert = AlertService.instance.alertUserError(withError: errCode)
+                            print(errCode)
+                            completion(false)
+                        }
+                    } else {
+                        alert = AlertService.instance.customAlert(title: "Success!", message: "")
+                        FIRDatabase.database().reference().child("users").child(user!.uid).child("email").setValue(user!.email!)
+                        print("Suecessfully converted anonymous user")
+                        completion(true)
+                    }
+                })
+            }
+        } else {
+            print("User is not anonymous")
+            alert = AlertService.instance.customAlert(title: "Not an Anonymous User", message: "This email is already asssociated with an account on Procrastinate It")
+            completion(false)
+        }
+    }
+    
+
+    
     func logOut(){
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
-        } catch let signOutError as NSError {
+        } catch let signOutError {
             print ("Error signing out: %@", signOutError)
         }
     }
     
+    // Private methods
+    private func facebookGraphRequest(completion: @escaping callback) {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
+            if err != nil {
+                alert = AlertService.instance.customAlert(title: "Error", message: "Please try again later")
+                print("failed to start graph request:", err as Any)
+                completion(false)
+            }
+            completion(true)
+        }
+    }
+    
+    private func emailFormCompleteAndCorrect(email: String, password: String, verifyPassword: String) -> Bool {
+        if email.isEmpty || password.isEmpty || verifyPassword.isEmpty {
+            alert = AlertService.instance.customAlert(title: "Form Incomplete", message: "Please fill in all fields to sign up for Procrastinate It")
+            return false
+        } else if password != verifyPassword {
+            alert = AlertService.instance.customAlert(title: "Passwords Do Not Match", message: "Please try again")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    private func facebookFirebaseSignInDetails(completion: @escaping callback){
+        let accessToken = FBSDKAccessToken.current()
+        guard let accessTokenString = accessToken?.tokenString else {return}
+        let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        
+        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
+            if error != nil {
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                    alert = AlertService.instance.alertUserError(withError: errCode)
+                    print(errCode)
+                }
+                completion(false)
+            }
+            print("successfully logged in with our user: ", user as Any)
+            facebookLoginSuccess = true
+            //Creates database entry for user
+            FIRDatabase.database().reference().child("users").child(user!.uid).child("email").setValue(user!.email!)
+            completion(true)
+        })
+        self.facebookGraphRequest{ (success) in success ? completion(true) : completion(false) }
+    }
     
 }

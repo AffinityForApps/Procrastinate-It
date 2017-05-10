@@ -48,7 +48,11 @@ class SignUpInVC: UIViewController {
     }
     
     @IBAction func facebookTapped(_ sender: Any) {
-        AuthService.instance.facebookSignIn(viewController: self)
+        AuthService.instance.facebookSignIn(viewController: self) { (success) in
+            if !success {
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     //Should have renamed this to signInTapped; there is no single sign-in/up action

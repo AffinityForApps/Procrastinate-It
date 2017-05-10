@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -320,7 +321,7 @@
         <!--Settings-->
         <scene sceneID="fei-Ej-ZjP">
             <objects>
-                <viewController id="iSj-XW-p8i" sceneMemberID="viewController">
+                <viewController id="iSj-XW-p8i" customClass="SettingsVC" customModule="Procrastinate_It" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cxh-7U-6Fj"/>
                         <viewControllerLayoutGuide type="bottom" id="Yt5-w7-am2"/>
@@ -345,33 +346,134 @@
             </objects>
             <point key="canvasLocation" x="2102.898550724638" y="-488.31521739130437"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Settings TableVC-->
         <scene sceneID="y0o-FY-Wp3">
             <objects>
-                <tableViewController id="Gge-Ww-HsN" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qqA-y0-mI4">
+                <tableViewController id="Gge-Ww-HsN" customClass="SettingsTableVC" customModule="Procrastinate_It" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qqA-y0-mI4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="596"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vcf-b1-Tcn">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vcf-b1-Tcn" id="wxz-5c-1Or">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <sections>
+                            <tableViewSection id="Qhb-ww-hUo">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="227" id="Vcf-b1-Tcn">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="227"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vcf-b1-Tcn" id="wxz-5c-1Or">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="226.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="yxe-dk-b23">
+                                                    <rect key="frame" x="92" y="30" width="230" height="167"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LnH-gx-gcu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="230" id="21q-AT-M3I"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-a6-4jV">
+                                                            <rect key="frame" x="0.0" y="36" width="230" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="230" id="6mm-HY-UF2"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a9B-XC-U8v">
+                                                            <rect key="frame" x="0.0" y="72" width="230" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="230" id="YCL-QU-C3T"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7E4-C0-njj">
+                                                            <rect key="frame" x="59" y="108" width="112" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="37.5" id="NlR-n2-z64"/>
+                                                                <constraint firstAttribute="width" constant="112.5" id="Odv-Tc-2d4"/>
+                                                            </constraints>
+                                                            <state key="normal" image="Sign Up Button Copy"/>
+                                                            <connections>
+                                                                <action selector="connectAccountTapped:" destination="Gge-Ww-HsN" eventType="touchUpInside" id="zeb-rK-CJp"/>
+                                                                <action selector="signUpTapped:" destination="rs7-Ae-w8M" eventType="touchUpInside" id="JsZ-3s-m7n"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="802-fs-d3H">
+                                                            <rect key="frame" x="91" y="152" width="48" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="hTs-6R-IMf"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                            <state key="normal" title="Cancel"/>
+                                                            <connections>
+                                                                <action selector="cancelTapped:" destination="rs7-Ae-w8M" eventType="touchUpInside" id="AGB-pi-xO4"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5E-nW-Waa">
+                                                    <rect key="frame" x="53" y="23" width="177" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="177" id="V2u-qr-1Lf"/>
+                                                        <constraint firstAttribute="height" constant="30" id="WBm-eG-rx8"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Convert To Facebook"/>
+                                                    <connections>
+                                                        <action selector="convertToFacebookTapped:" destination="Gge-Ww-HsN" eventType="touchUpInside" id="CiC-if-mbm"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EnR-Dc-HFT">
+                                                    <rect key="frame" x="69" y="61" width="113" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="dyC-YK-S3f"/>
+                                                        <constraint firstAttribute="width" constant="113" id="wyl-JH-Du1"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Convert to Email"/>
+                                                    <connections>
+                                                        <action selector="convertToEmailTapped:" destination="Gge-Ww-HsN" eventType="touchUpInside" id="DKs-s7-xt0"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yxe-dk-b23" firstAttribute="centerX" secondItem="wxz-5c-1Or" secondAttribute="centerX" id="Ntr-Jm-Pjj"/>
+                                                <constraint firstItem="yxe-dk-b23" firstAttribute="centerY" secondItem="wxz-5c-1Or" secondAttribute="centerY" id="Nyd-U3-cN7"/>
+                                                <constraint firstItem="D5E-nW-Waa" firstAttribute="top" secondItem="wxz-5c-1Or" secondAttribute="topMargin" constant="15" id="Ydg-6c-rck"/>
+                                                <constraint firstItem="D5E-nW-Waa" firstAttribute="leading" secondItem="wxz-5c-1Or" secondAttribute="leadingMargin" constant="45" id="fbs-qY-JNE"/>
+                                                <constraint firstItem="EnR-Dc-HFT" firstAttribute="top" secondItem="D5E-nW-Waa" secondAttribute="bottom" constant="8" id="mpv-HK-oqg"/>
+                                                <constraint firstItem="EnR-Dc-HFT" firstAttribute="leading" secondItem="wxz-5c-1Or" secondAttribute="leadingMargin" constant="61" id="oul-Ul-wWb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="Gge-Ww-HsN" id="eaJ-u0-Ysm"/>
                             <outlet property="delegate" destination="Gge-Ww-HsN" id="VUT-tQ-txL"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="cancelButton" destination="802-fs-d3H" id="ccV-PL-gbz"/>
+                        <outlet property="confirmPasswordTF" destination="a9B-XC-U8v" id="LqI-Nn-5XQ"/>
+                        <outlet property="connectAccountButton" destination="7E4-C0-njj" id="cCT-tz-Eak"/>
+                        <outlet property="convertToEmailButton" destination="EnR-Dc-HFT" id="fpM-Ma-6Gc"/>
+                        <outlet property="convertToFacebookButton" destination="D5E-nW-Waa" id="rNL-7x-8II"/>
+                        <outlet property="emailConversionForm" destination="yxe-dk-b23" id="D26-1c-1Rw"/>
+                        <outlet property="emailTF" destination="LnH-gx-gcu" id="vGd-j9-hOo"/>
+                        <outlet property="passwordTF" destination="cvc-a6-4jV" id="eAZ-qb-ujx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gns-Uk-50h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3032" y="-431"/>
+            <point key="canvasLocation" x="3031.884057971015" y="-431.25000000000006"/>
         </scene>
         <!--Do It Later-->
         <scene sceneID="ZlE-HC-Uli">
@@ -727,6 +829,6 @@
         <image name="pexels-photo-131979" width="414" height="736"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MmB-1A-TID"/>
+        <segue reference="1ym-kG-Snr"/>
     </inferredMetricsTieBreakers>
 </document>
