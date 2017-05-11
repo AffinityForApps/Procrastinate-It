@@ -48,7 +48,11 @@ class SignUpInVC: UIViewController {
     }
     
     @IBAction func facebookTapped(_ sender: Any) {
-        AuthService.instance.facebookSignIn(viewController: self)
+        AuthService.instance.facebookSignIn(viewController: self) { (success) in
+            if !success {
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     //Should have renamed this to signInTapped; there is no single sign-in/up action
@@ -60,6 +64,7 @@ class SignUpInVC: UIViewController {
             } else {
                 self.emailSignInStackView.isHidden = true
                 self.emailLogin.isHidden = false
+                self.anonymousLogin.isHidden = false
                 self.usernameField.text = ""
                 self.passwordField.text = ""
                 self.procrastinateIt()
@@ -86,8 +91,9 @@ class SignUpInVC: UIViewController {
     @IBAction func newUserTapped(_ sender: Any) {
         didLogOut = false
         performSegue(withIdentifier: "newEmailUser", sender: nil)
-        emailSignInStackView.isHidden = true
-        emailLogin.isHidden = false
+        self.emailSignInStackView.isHidden = true
+        self.emailLogin.isHidden = false
+        self.anonymousLogin.isHidden = false
     }
     
     func procrastinateIt(){

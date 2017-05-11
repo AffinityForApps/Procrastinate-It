@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="296" width="414" height="440"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Y7-y1-iWf">
-                                        <rect key="frame" x="2" y="35" width="410" height="183"/>
+                                        <rect key="frame" x="2" y="35" width="410" height="166"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIX-B4-UD5">
                                                 <rect key="frame" x="0.0" y="0.0" width="410" height="65"/>
@@ -67,7 +69,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzk-Na-itz">
-                                                <rect key="frame" x="0.0" y="151" width="410" height="32"/>
+                                                <rect key="frame" x="0.0" y="151" width="410" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="avE-iQ-j4g"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                 <state key="normal" title="I Don't Want to Create an Account"/>
                                                 <connections>
@@ -288,12 +293,20 @@
                                 <action selector="logoutTapped:" destination="FAS-dB-DXM" id="LCJ-no-oNQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rK8-ui-b7O">
-                            <color key="tintColor" red="0.25709348920000002" green="0.6458227634" blue="0.64508837460000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="addTapped:" destination="FAS-dB-DXM" id="kWc-S5-ruI"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="rK8-ui-b7O">
+                                <color key="tintColor" red="0.25709348920000002" green="0.6458227634" blue="0.64508837460000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="addTapped:" destination="FAS-dB-DXM" id="kWc-S5-ruI"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="SettingsIcon" id="ccI-nn-HIU">
+                                <color key="tintColor" red="0.36854439970000002" green="0.63924241069999999" blue="0.63927900790000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <segue destination="Gge-Ww-HsN" kind="show" id="LQl-tW-jb6"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="5hi-EK-hE2" id="VuX-bS-FA3"/>
@@ -303,7 +316,146 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xle-Fv-a4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111.594202898551" y="-1210.5978260869565"/>
+            <point key="canvasLocation" x="2107" y="-1211"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="y0o-FY-Wp3">
+            <objects>
+                <tableViewController id="Gge-Ww-HsN" customClass="SettingsTableVC" customModule="Procrastinate_It" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="qqA-y0-mI4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Connect Account" id="Qhb-ww-hUo">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="174" id="Vcf-b1-Tcn">
+                                        <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="174"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vcf-b1-Tcn" id="wxz-5c-1Or">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="yxe-dk-b23">
+                                                    <rect key="frame" x="92" y="3.6666666666666714" width="230" height="167"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LnH-gx-gcu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="230" height="29.999999999999996"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="230" id="21q-AT-M3I"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-a6-4jV">
+                                                            <rect key="frame" x="0.0" y="36" width="230" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="230" id="6mm-HY-UF2"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a9B-XC-U8v">
+                                                            <rect key="frame" x="0.0" y="72" width="230" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="230" id="YCL-QU-C3T"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7E4-C0-njj">
+                                                            <rect key="frame" x="45" y="108" width="140" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="140" id="CZI-7r-xpQ"/>
+                                                                <constraint firstAttribute="height" constant="37.5" id="NlR-n2-z64"/>
+                                                            </constraints>
+                                                            <state key="normal" image="LinkAccountButton"/>
+                                                            <connections>
+                                                                <action selector="connectAccountTapped:" destination="Gge-Ww-HsN" eventType="touchUpInside" id="zeb-rK-CJp"/>
+                                                                <action selector="signUpTapped:" destination="rs7-Ae-w8M" eventType="touchUpInside" id="JsZ-3s-m7n"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="802-fs-d3H">
+                                                            <rect key="frame" x="91" y="152" width="48" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="hTs-6R-IMf"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                            <state key="normal" title="Cancel"/>
+                                                            <connections>
+                                                                <action selector="cancelTapped:" destination="rs7-Ae-w8M" eventType="touchUpInside" id="AGB-pi-xO4"/>
+                                                                <action selector="cancelTapped:" destination="Gge-Ww-HsN" eventType="touchUpInside" id="Br3-gR-fEd"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gXU-Hd-FOT">
+                                                    <rect key="frame" x="10" y="17.666666666666671" width="394" height="139"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5E-nW-Waa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="394" height="65"/>
+                                                            <state key="normal" image="FacebookLinkButton"/>
+                                                            <connections>
+                                                                <action selector="convertToFacebookTapped:" destination="Gge-Ww-HsN" eventType="touchUpInside" id="CiC-if-mbm"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EnR-Dc-HFT">
+                                                            <rect key="frame" x="0.0" y="73" width="394" height="66"/>
+                                                            <state key="normal" image="EmailLinkButton"/>
+                                                            <connections>
+                                                                <action selector="convertToEmailTapped:" destination="Gge-Ww-HsN" eventType="touchUpInside" id="DKs-s7-xt0"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gXU-Hd-FOT" firstAttribute="leading" secondItem="wxz-5c-1Or" secondAttribute="leadingMargin" constant="2" id="CJ9-xB-G2p"/>
+                                                <constraint firstItem="gXU-Hd-FOT" firstAttribute="centerY" secondItem="wxz-5c-1Or" secondAttribute="centerY" id="HnL-eu-h7Q"/>
+                                                <constraint firstItem="yxe-dk-b23" firstAttribute="centerX" secondItem="wxz-5c-1Or" secondAttribute="centerX" id="Ntr-Jm-Pjj"/>
+                                                <constraint firstItem="yxe-dk-b23" firstAttribute="centerY" secondItem="wxz-5c-1Or" secondAttribute="centerY" id="Nyd-U3-cN7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gXU-Hd-FOT" secondAttribute="trailing" constant="2" id="kO1-tV-OCX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="Xl3-Mb-00P">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="49" id="DDw-kh-mAr">
+                                        <rect key="frame" x="0.0" y="285.33333333333337" width="414" height="49"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DDw-kh-mAr" id="i4i-w1-q2N">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Gge-Ww-HsN" id="eaJ-u0-Ysm"/>
+                            <outlet property="delegate" destination="Gge-Ww-HsN" id="VUT-tQ-txL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="JOU-Gh-UXY"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="802-fs-d3H" id="ccV-PL-gbz"/>
+                        <outlet property="confirmPasswordTF" destination="a9B-XC-U8v" id="LqI-Nn-5XQ"/>
+                        <outlet property="connectAccountButton" destination="7E4-C0-njj" id="cCT-tz-Eak"/>
+                        <outlet property="convertToEmailButton" destination="EnR-Dc-HFT" id="fpM-Ma-6Gc"/>
+                        <outlet property="convertToFacebookButton" destination="D5E-nW-Waa" id="rNL-7x-8II"/>
+                        <outlet property="emailConversionForm" destination="yxe-dk-b23" id="D26-1c-1Rw"/>
+                        <outlet property="emailTF" destination="LnH-gx-gcu" id="vGd-j9-hOo"/>
+                        <outlet property="passwordTF" destination="cvc-a6-4jV" id="eAZ-qb-ujx"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gns-Uk-50h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2106" y="-478"/>
         </scene>
         <!--Do It Later-->
         <scene sceneID="ZlE-HC-Uli">
@@ -330,7 +482,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="80.666666666666657"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADj-hU-G2u">
-                                                        <rect key="frame" x="69.999999999999986" y="0.0" width="110.33333333333333" height="35.666666666666671"/>
+                                                        <rect key="frame" x="69.666666666666671" y="0.0" width="110.33333333333333" height="35.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="26"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -421,7 +573,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N28-J0-Sg1">
-                                                        <rect key="frame" x="72.666666666666671" y="33.333333333333314" width="51" height="31.000000000000057"/>
+                                                        <rect key="frame" x="72.333333333333329" y="33.333333333333314" width="51" height="31.000000000000057"/>
                                                         <color key="onTintColor" red="0.25709348920000002" green="0.6458227634" blue="0.64508837460000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="recurringTaskSwitchTapped:" destination="WWJ-bU-NdP" eventType="valueChanged" id="65j-rl-OHO"/>
@@ -525,7 +677,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UvX-3G-f6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1325" y="-1210"/>
+            <point key="canvasLocation" x="1180" y="-839"/>
         </scene>
         <!--New Email UserVC-->
         <scene sceneID="hly-ZZ-8r8">
@@ -649,9 +801,13 @@
     </scenes>
     <resources>
         <image name="Email Sign In" width="372" height="66"/>
+        <image name="EmailLinkButton" width="329" height="66"/>
         <image name="Facebook Sign In" width="372" height="65"/>
+        <image name="FacebookLinkButton" width="329" height="65"/>
+        <image name="LinkAccountButton" width="183" height="50"/>
         <image name="Logo" width="378" height="59"/>
         <image name="SaveButton" width="194" height="53"/>
+        <image name="SettingsIcon" width="25" height="25"/>
         <image name="Sign In Button" width="153" height="50"/>
         <image name="Sign Up Button Copy" width="153" height="50"/>
         <image name="Tagline" width="334" height="80"/>

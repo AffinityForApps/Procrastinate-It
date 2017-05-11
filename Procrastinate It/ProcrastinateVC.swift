@@ -19,6 +19,7 @@ class ProcrastinateVC: UIViewController {
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()!.currentUser!.uid
     let dataService = DataService.instance
+    let blankTask = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
     
     override func viewWillAppear(_ animated: Bool) {
         //This removes all the PITasks from the static array, otherwise the local array adds duplicates
@@ -46,7 +47,6 @@ class ProcrastinateVC: UIViewController {
     
     @IBAction func addTapped(_ sender: Any) {
         //Sends a blank task to EditTaskVC to avoid a crash
-        let blankTask = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
         performSegue(withIdentifier: "editSegue", sender: blankTask)
    }
     
@@ -119,7 +119,7 @@ extension ProcrastinateVC: UITableViewDelegate, UITableViewDataSource {
             let task = DataService.tasks[indexPath.row]
             performSegue(withIdentifier: "editSegue", sender: task)
         } else {
-            performSegue(withIdentifier: "addSegue", sender: nil)
+            performSegue(withIdentifier: "editSegue", sender: blankTask)
         }
     }
 }
