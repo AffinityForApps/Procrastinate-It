@@ -20,6 +20,7 @@ class SettingsTableVC: UITableViewController {
     @IBOutlet weak var confirmPasswordTF: UITextField!
     @IBOutlet weak var connectAccountButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+//    @IBOutlet weak var connectAccountSection: UITableViewSection!
     
     let user = FIRAuth.auth()!.currentUser!
     
@@ -28,6 +29,13 @@ class SettingsTableVC: UITableViewController {
         super.viewDidLoad()
         
         emailConversionForm.isHidden = true
+        if let navigationBar = self.navigationController?.navigationBar {
+            //Set back button color to compliment the app color scheme
+            navigationBar.tintColor = UIColor(red: 0.29, green: 0.65, blue: 0.65, alpha: 1.0)
+            if let topItem = navigationBar.topItem {
+                topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            }
+        }
 
     }
 
@@ -42,6 +50,7 @@ class SettingsTableVC: UITableViewController {
     @IBAction func convertToFacebookTapped(_ sender: Any) {
         AuthService.instance.convertAnonToFacebook(user: user, viewController: self) { (success) in success ?
             self.dismiss(animated: true, completion: nil) : self.present(alert, animated: true, completion:  nil) }
+        
         }
     
     @IBAction func convertToEmailTapped(_ sender: Any) {
@@ -53,7 +62,13 @@ class SettingsTableVC: UITableViewController {
     @IBAction func connectAccountTapped(_ sender: Any) {
         AuthService.instance.convertAnonToEmail(user: user, email: emailTF.text!, password: passwordTF.text!, verifyPassword: confirmPasswordTF.text!) { (success) in success ? self.dismiss(animated: true, completion: nil) :
             self.present(alert, animated: true, completion:  nil) }
+        _ = navigationController?.popToRootViewController(animated: true)
     }
  
+    @IBAction func cancelTapped(_ sender: Any) {
+        emailConversionForm.isHidden = true
+        convertToEmailButton.isHidden = false
+        convertToFacebookButton.isHidden = false
+    }
 
 }
