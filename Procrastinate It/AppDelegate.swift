@@ -46,24 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         return handled;
     }
-    
-    func scheduleNotification(at date: Date) {
-        let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents(in: .current, from: date)
-        let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
-        let content = UNMutableNotificationContent()
-        content.title = "Panic Monster"
-        content.body = "Arrrrgggg!!!"
-        content.sound = UNNotificationSound.default()
-        let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        UNUserNotificationCenter.current().add(request) {(error) in
-            if let error = error {
-                print("Uh oh! We had an error: \(error)")
-            }
-        }
-    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
