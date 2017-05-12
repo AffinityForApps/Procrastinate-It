@@ -27,6 +27,7 @@
 		62F5D68D1EC1D59E002BF010 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D68C1EC1D59E002BF010 /* SettingsVC.swift */; };
 		62F5D68F1EC1D5B6002BF010 /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D68E1EC1D5B6002BF010 /* SettingsTableVC.swift */; };
 		62F5D6DD1EC47E2F002BF010 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62F5D6DC1EC47E2F002BF010 /* GoogleService-Info.plist */; };
+		62F5D6E31EC5D0AF002BF010 /* PanicMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E21EC5D0AF002BF010 /* PanicMonster.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		62F5D68C1EC1D59E002BF010 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		62F5D68E1EC1D5B6002BF010 /* SettingsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		62F5D6DC1EC47E2F002BF010 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		62F5D6E21EC5D0AF002BF010 /* PanicMonster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanicMonster.swift; sourceTree = "<group>"; };
 		E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.debug.xcconfig"; sourceTree = "<group>"; };
 		E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.release.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 				62F5D6681EBE02D1002BF010 /* AuthService.swift */,
 				62F5D6721EBE2501002BF010 /* AlertService.swift */,
 				62F5D6741EBE53FE002BF010 /* DataService.swift */,
+				62F5D6E21EC5D0AF002BF010 /* PanicMonster.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62F5D6E31EC5D0AF002BF010 /* PanicMonster.swift in Sources */,
 				62E8430C1E5FE5FD007E40F5 /* PITask.swift in Sources */,
 				62E843141E61D2F4007E40F5 /* User.swift in Sources */,
 				62F5D68F1EC1D5B6002BF010 /* SettingsTableVC.swift in Sources */,
