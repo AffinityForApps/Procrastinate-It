@@ -69,13 +69,21 @@ class EditTaskVC: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: self.task.lastIncrease, isRecurring: self.task.isRecurring)))
-        
-        let selectedDate = Date()
-        let selectedDate2 = selectedDate.addingTimeInterval(60)
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        delegate?.scheduleNotification(at: selectedDate2)
-        
+        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: self.initTask()))
+
+        PanicMonster.instance.scheduleNotification(at: self.initTask().completeBy)
+
         _ = navigationController?.popToRootViewController(animated: true)
     }
+    
+    private func initTask() -> PITask {
+        return PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: self.task.lastIncrease, isRecurring: self.task.isRecurring)
+    }
+    
+    
 }
+
+extension EditTaskVC: UITextFieldDelegate {
+    
+}
+

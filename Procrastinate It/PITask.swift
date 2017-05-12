@@ -16,6 +16,7 @@ class PITask {
     private var _taskKey: String
     private var _taskDate: Date
     private var _lastIncrease: Date
+    private var _completeBy: Date
     private var _isRecurring: Bool
     
     var taskName: String {
@@ -53,8 +54,6 @@ class PITask {
     var taskKey: String {
         get {
             return _taskKey
-        } set {
-            _taskKey = newValue
         }
     }
     
@@ -74,6 +73,14 @@ class PITask {
         }
     }
     
+    var completeBy: Date {
+        get {
+            return _completeBy
+        } set {
+            _completeBy = newValue
+        }
+    }
+    
     var isRecurring: Bool {
         get {
             return _isRecurring
@@ -84,6 +91,7 @@ class PITask {
     
     init(taskName: String, taskInfo: String, taskPriority: Int, taskInterval: Int, taskKey: String, taskDate: Date, lastIncrease: Date, isRecurring: Bool){
         
+        let baseDate = Date()
         self._taskName = taskName
         self._taskInfo = taskInfo
         self._taskPriority = taskPriority
@@ -92,6 +100,21 @@ class PITask {
         self._taskDate = taskDate
         self._lastIncrease = lastIncrease
         self._isRecurring = isRecurring
+        self._completeBy = baseDate.addingTimeInterval(60)
+        
+    }
+    
+    init(taskName: String, taskInfo: String, taskPriority: Int, taskInterval: Int, taskKey: String, taskDate: Date, lastIncrease: Date, isRecurring: Bool, completeBy: Date) {
+        
+        self._taskName = taskName
+        self._taskInfo = taskInfo
+        self._taskPriority = taskPriority
+        self._taskInterval = taskInterval
+        self._taskKey = taskKey
+        self._taskDate = taskDate
+        self._lastIncrease = lastIncrease
+        self._isRecurring = isRecurring
+        self._completeBy = completeBy
         
     }
     
