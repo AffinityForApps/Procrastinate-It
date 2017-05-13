@@ -39,15 +39,15 @@ class ProcrastinateVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editSegue"{
-            let nextVC = segue.destination as! EditTaskVC
+        if segue.identifier == "newWay"{
+            let nextVC = segue.destination as! EditTask2VC
             nextVC.task = sender as! PITask
         }
     }
     
     @IBAction func addTapped(_ sender: Any) {
         //Sends a blank task to EditTaskVC to avoid a crash
-        performSegue(withIdentifier: "editSegue", sender: blankTask)
+        performSegue(withIdentifier: "newWay", sender: blankTask)
    }
     
     @IBAction func logoutTapped(_ sender: Any) {
@@ -117,9 +117,9 @@ extension ProcrastinateVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if DataService.tasks.count > 0 {
             let task = DataService.tasks[indexPath.row]
-            performSegue(withIdentifier: "editSegue", sender: task)
+            performSegue(withIdentifier: "newWay", sender: task)
         } else {
-            performSegue(withIdentifier: "editSegue", sender: blankTask)
+            performSegue(withIdentifier: "newWay", sender: blankTask)
         }
     }
 }

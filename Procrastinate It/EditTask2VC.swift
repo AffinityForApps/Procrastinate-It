@@ -1,8 +1,8 @@
 //
-//  EditTaskVC.swift
+//  EditTask2VC.swift
 //  Procrastinate It
 //
-//  Created by Steven Sherry on 2/26/17.
+//  Created by Steven Sherry on 5/12/17.
 //  Copyright © 2017 Affinity for Apps. All rights reserved.
 //
 
@@ -11,33 +11,33 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class EditTaskVC: UIViewController {
+class EditTask2VC: UIViewController {
     
     var task = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
     
     @IBOutlet weak var taskTitleField: UITextField!
     @IBOutlet weak var taskDetailsField: UITextView!
     @IBOutlet weak var priorityLabel: UILabel!
-    @IBOutlet weak var intervalLabel: UILabel!
+    @IBOutlet weak var finishByButton: UIButton!
     
     @IBOutlet weak var prioritySlider: UISlider!
-    @IBOutlet weak var intervalSlider: UISlider!
-    
     @IBOutlet weak var recurringTaskSwitch: UISwitch!
+    
+    var datePicker: AADatePicker!
     
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()!.currentUser!.uid
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        datePicker = AADatePicker(viewController: self)
+//        datePicker.delegate = self
+        self.view.addSubview(datePicker)
         //Sets the UI's visual data whether a new task or existing task
         taskTitleField.text = task.taskName
         taskDetailsField.text = task.taskInfo
-        priorityLabel.text = "\(task.taskPriority)"
-        intervalLabel.text = "\(task.taskInterval)"
+        priorityLabel.text = "\(Int(task.taskPriority))"
         prioritySlider.value = Float(task.taskPriority)
-        intervalSlider.value = Float(task.taskInterval)
         recurringTaskSwitch.isOn = task.isRecurring
         
         //Remove previous VC Navbar title from back button
@@ -51,15 +51,10 @@ class EditTaskVC: UIViewController {
     }
 
     @IBAction func prioritySliderMoved(_ sender: Any) {
-        task.taskPriority = Double(Int(prioritySlider.value))
-        self.priorityLabel.text = "\(task.taskPriority)"
+        task.taskPriority = Double(prioritySlider.value)
+        self.priorityLabel.text = "\(Int(prioritySlider.value))"
     }
     
-    @IBAction func intervalSliderMoved(_ sender: Any) {
-        task.taskInterval = Double(Int(intervalSlider.value))
-        self.intervalLabel.text = "\(task.taskInterval)"
-    }
-
     @IBAction func recurringTaskSwitchTapped(_ sender: Bool) {
         if recurringTaskSwitch.isOn {
             task.isRecurring = true
@@ -70,20 +65,24 @@ class EditTaskVC: UIViewController {
     
     @IBAction func saveTapped(_ sender: Any) {
         DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: self.initTask()))
-
+        
         PanicMonster.instance.scheduleNotification(at: self.initTask().completeBy)
-
+        
         _ = navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func finishByButtonTapped(_ sender: UIDatePicker) {
+        
     }
     
     private func initTask() -> PITask {
         return PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: self.task.lastIncrease, isRecurring: self.task.isRecurring)
     }
-    
-    
 }
 
-extension EditTaskVC: UITextFieldDelegate {
-    
+extension EditTask2VC: AADatePickerDelegate {
+    func setLayout(_ viewController: UIViewController) {
+        
+        
+    }
 }
-

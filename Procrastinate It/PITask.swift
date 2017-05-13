@@ -11,8 +11,8 @@ class PITask {
     
     private var _taskName: String
     private var _taskInfo: String
-    private var _taskPriority: Int
-    private var _taskInterval: Int
+    private var _taskPriority: Double
+    private var _taskInterval: Double
     private var _taskKey: String
     private var _taskDate: Date
     private var _lastIncrease: Date
@@ -35,7 +35,7 @@ class PITask {
         }
     }
     
-    var taskPriority: Int {
+    var taskPriority: Double {
         get {
             return _taskPriority
         } set {
@@ -43,7 +43,7 @@ class PITask {
         }
     }
     
-    var taskInterval: Int {
+    var taskInterval: Double {
         get {
             return _taskInterval
         } set {
@@ -89,7 +89,7 @@ class PITask {
         }
     }
     
-    init(taskName: String, taskInfo: String, taskPriority: Int, taskInterval: Int, taskKey: String, taskDate: Date, lastIncrease: Date, isRecurring: Bool){
+    init(taskName: String, taskInfo: String, taskPriority: Double, taskInterval: Double, taskKey: String, taskDate: Date, lastIncrease: Date, isRecurring: Bool){
         
         let baseDate = Date()
         self._taskName = taskName
@@ -104,7 +104,7 @@ class PITask {
         
     }
     
-    init(taskName: String, taskInfo: String, taskPriority: Int, taskInterval: Int, taskKey: String, taskDate: Date, lastIncrease: Date, isRecurring: Bool, completeBy: Date) {
+    init(taskName: String, taskInfo: String, taskPriority: Double, taskInterval: Double, taskKey: String, taskDate: Date, lastIncrease: Date, isRecurring: Bool, completeBy: Date) {
         
         self._taskName = taskName
         self._taskInfo = taskInfo

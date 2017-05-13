@@ -40,8 +40,8 @@ class DataService {
             
             let task = PITask(taskName: snapshotDictionary!["Task Name"] as! String,
                               taskInfo: snapshotDictionary!["Task Info"] as! String,
-                              taskPriority: snapshotDictionary!["Task Priority"] as! Int,
-                              taskInterval: snapshotDictionary!["Task Interval"] as! Int,
+                              taskPriority: snapshotDictionary!["Task Priority"] as! Double,
+                              taskInterval: snapshotDictionary!["Task Interval"] as! Double,
                               taskKey: snapshot.key,
                               taskDate: self.dateFormatter.date(from: snapshotDictionary!["Task Date"] as! String)! as Date,
                               lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date,
@@ -79,8 +79,8 @@ class DataService {
             
             let task = PITask(taskName: snapshotDictionary!["Task Name"] as! String,
                               taskInfo: snapshotDictionary!["Task Info"] as! String,
-                              taskPriority: snapshotDictionary!["Task Priority"] as! Int,
-                              taskInterval: snapshotDictionary!["Task Interval"] as! Int,
+                              taskPriority: snapshotDictionary!["Task Priority"] as! Double,
+                              taskInterval: snapshotDictionary!["Task Interval"] as! Double,
                               taskKey: snapshot.key,
                               taskDate: self.dateFormatter.date(from:snapshotDictionary!["Task Date"] as! String)!,
                               lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date,
@@ -121,7 +121,7 @@ class DataService {
             if task.lastIncrease != self.currentDate {
                 let days = self.currentDate.timeIntervalSince(task.lastIncrease)/Double(self.secondsInDay)
                 if days > 1 {
-                    task.taskPriority += task.taskInterval * Int(days)
+                    task.taskPriority += task.taskInterval * days
                     if task.taskPriority >= 10{
                         task.taskPriority = 10
                     }

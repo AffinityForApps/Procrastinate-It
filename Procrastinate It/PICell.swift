@@ -31,7 +31,7 @@ class PICell: UITableViewCell {
         if let task = cellTask {
             taskLabel.text = task.taskName
             detailsLabel.text = task.taskInfo
-            priorityLabel.text = "\(task.taskPriority)"
+            priorityLabel.text = "\(Int(task.taskPriority))"
             //Sets the shadow to red if taskPriority is 10
             if task.taskPriority >= 10 {
                 cellView.layer.shadowColor = UIColor(red: 0.99, green: 0.06, blue: 0.06, alpha: 0.70).cgColor
