@@ -18,21 +18,22 @@ class EditTask2VC: UIViewController {
     @IBOutlet weak var taskTitleField: UITextField!
     @IBOutlet weak var taskDetailsField: UITextView!
     @IBOutlet weak var priorityLabel: UILabel!
-    @IBOutlet weak var finishByButton: UIButton!
+    @IBOutlet weak var deadlineField: UITextField!
     
     @IBOutlet weak var prioritySlider: UISlider!
     @IBOutlet weak var recurringTaskSwitch: UISwitch!
     
+
     var datePicker: AADatePicker!
+    
     
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()!.currentUser!.uid
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        datePicker = AADatePicker(viewController: self)
-//        datePicker.delegate = self
-        
+        datePicker = AADatePicker(viewController: self, textField: deadlineField)
         //Sets the UI's visual data whether a new task or existing task
         taskTitleField.text = task.taskName
         taskDetailsField.text = task.taskInfo
@@ -71,15 +72,20 @@ class EditTask2VC: UIViewController {
         _ = navigationController?.popToRootViewController(animated: true)
     }
     
-    @IBAction func finishByButtonTapped(_ sender: UIDatePicker) {
-        self.view.addSubview(datePicker)
-    }
+//    @IBAction func finishByButtonTapped(_ sender: UIDatePicker) {
+//        self.view.addSubview(datePicker)
+//    }
     
     private func initTask() -> PITask {
         return PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: self.task.lastIncrease, isRecurring: self.task.isRecurring)
     }
+    
 }
 
-extension EditTask2VC: AADatePickerDelegate {
-    
+extension EditTask2VC: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        if textField == deadlineField {
+//            datePicker = AADatePicker(viewController: self, textField: deadlineField)
+//        }
+//    }
 }
