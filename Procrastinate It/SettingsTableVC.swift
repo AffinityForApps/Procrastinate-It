@@ -36,7 +36,6 @@ class SettingsTableVC: UITableViewController {
                 topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             }
         }
-
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -32,7 +32,7 @@ class EditTask2VC: UIViewController {
         super.viewDidLoad()
         datePicker = AADatePicker(viewController: self)
 //        datePicker.delegate = self
-        self.view.addSubview(datePicker)
+        
         //Sets the UI's visual data whether a new task or existing task
         taskTitleField.text = task.taskName
         taskDetailsField.text = task.taskInfo
@@ -72,7 +72,7 @@ class EditTask2VC: UIViewController {
     }
     
     @IBAction func finishByButtonTapped(_ sender: UIDatePicker) {
-        
+        self.view.addSubview(datePicker)
     }
     
     private func initTask() -> PITask {
@@ -81,8 +81,5 @@ class EditTask2VC: UIViewController {
 }
 
 extension EditTask2VC: AADatePickerDelegate {
-    func setLayout(_ viewController: UIViewController) {
-        
-        
-    }
+    
 }

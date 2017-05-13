@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 public protocol AADatePickerDelegate: class {
-    func setLayout(_ viewController: UIViewController)
+    
 }

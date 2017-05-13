@@ -31,6 +31,7 @@
 		62F5D6E51EC68478002BF010 /* EditTask2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E41EC68478002BF010 /* EditTask2VC.swift */; };
 		62F5D6E71EC6B105002BF010 /* AADatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E61EC6B105002BF010 /* AADatePicker.swift */; };
 		62F5D6EA1EC6B89A002BF010 /* AADatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E91EC6B89A002BF010 /* AADatePickerDelegate.swift */; };
+		62F5D6EC1EC6D5DD002BF010 /* AABarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6EB1EC6D5DD002BF010 /* AABarButtonItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		62F5D6E41EC68478002BF010 /* EditTask2VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTask2VC.swift; sourceTree = "<group>"; };
 		62F5D6E61EC6B105002BF010 /* AADatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AADatePicker.swift; sourceTree = "<group>"; };
 		62F5D6E91EC6B89A002BF010 /* AADatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AADatePickerDelegate.swift; sourceTree = "<group>"; };
+		62F5D6EB1EC6D5DD002BF010 /* AABarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AABarButtonItem.swift; sourceTree = "<group>"; };
 		E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.debug.xcconfig"; sourceTree = "<group>"; };
 		E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.release.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +173,7 @@
 			children = (
 				62F5D6E61EC6B105002BF010 /* AADatePicker.swift */,
 				62F5D6E91EC6B89A002BF010 /* AADatePickerDelegate.swift */,
+				62F5D6EB1EC6D5DD002BF010 /* AABarButtonItem.swift */,
 			);
 			name = AADatePicker;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */,
 				62E8431C1E643F33007E40F5 /* MaterialView.swift in Sources */,
 				62F5D6E51EC68478002BF010 /* EditTask2VC.swift in Sources */,
+				62F5D6EC1EC6D5DD002BF010 /* AABarButtonItem.swift in Sources */,
 				62F5D6E71EC6B105002BF010 /* AADatePicker.swift in Sources */,
 				62F5D6691EBE02D1002BF010 /* AuthService.swift in Sources */,
 				62E8431A1E62C672007E40F5 /* EditTaskVC.swift in Sources */,

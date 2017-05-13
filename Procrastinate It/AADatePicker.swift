@@ -20,46 +20,29 @@ public class AADatePicker: UIDatePicker {
     
     public init(viewController: UIViewController) {
         super.init(frame: CGRect(x: 0, y: viewController.view.frame.size.height - 216, width: viewController.view.frame.size.width, height: 216))
+        self.backgroundColor = UIColor(red: 242/255, green: 243/255, blue: 251/255, alpha: 1)
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.tintColor = UIColor(red: 0.29, green: 0.65, blue: 0.65, alpha: 1.0)
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneTapped))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelTapped))
+        let doneButton = AABarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTapped(sender:)))
+        let spaceButton = AABarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = AABarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelTapped))
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
+        self.minimumDate = Date()
         self.addSubview(toolBar)
     }
+
     
-//    required public init?(coder aDecoder: NSCoder, viewController: UIViewController) {
-//        super.init(coder: aDecoder)
-//        toolBar.barStyle = .default
-//        toolBar.isTranslucent = true
-//        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
-//        toolBar.sizeToFit()
-//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneTapped))
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelTapped))
-//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-//        toolBar.isUserInteractionEnabled = true
-//        self.addSubview(toolBar)
-//    }
-    
-    func setView() {
-        
-    }
-    
-    func doneTapped(button: UIButton, date: Date) {
-       
+    func doneTapped(sender: Any) -> Date {
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        print("\(self.date)")
+        return self.date
     }
     
     func cancelTapped() {
-        
-    }
-    
-    func setLayout(viewController: UIViewController) {
-        
+        self.removeFromSuperview()
     }
     
 }
