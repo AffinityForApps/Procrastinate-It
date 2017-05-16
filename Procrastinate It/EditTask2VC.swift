@@ -18,22 +18,28 @@ class EditTask2VC: UIViewController {
     @IBOutlet weak var taskTitleField: UITextField!
     @IBOutlet weak var taskDetailsField: UITextView!
     @IBOutlet weak var priorityLabel: UILabel!
+    @IBOutlet weak var deadlineLabel: UILabel!
     @IBOutlet weak var deadlineField: UITextField!
+    @IBOutlet weak var deadlineButton: UIButton!
     
     @IBOutlet weak var prioritySlider: UISlider!
     @IBOutlet weak var recurringTaskSwitch: UISwitch!
     
-
     var datePicker: AADatePicker!
-    
     
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()!.currentUser!.uid
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        datePicker = AADatePicker(viewController: self, textField: deadlineField)
+        
+        datePicker = AADatePicker(viewController: self, label: deadlineLabel, textField: deadlineField, task: task)
+        deadlineField.isHidden = true
+        
+        if task.taskName == "" {
+            deadlineLabel.text = "Deadline:"
+        }
+        
         //Sets the UI's visual data whether a new task or existing task
         taskTitleField.text = task.taskName
         taskDetailsField.text = task.taskInfo
@@ -52,7 +58,7 @@ class EditTask2VC: UIViewController {
     }
 
     @IBAction func prioritySliderMoved(_ sender: Any) {
-        task.taskPriority = Double(prioritySlider.value)
+        task.taskPriority = Double(Int(prioritySlider.value))
         self.priorityLabel.text = "\(Int(prioritySlider.value))"
     }
     
@@ -65,27 +71,21 @@ class EditTask2VC: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: self.initTask()))
+        let task = self.initTask()
+        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: task))
         
-        PanicMonster.instance.scheduleNotification(at: self.initTask().completeBy)
+        PanicMonster.instance.scheduleNotification(forTask: task)
         
         _ = navigationController?.popToRootViewController(animated: true)
     }
     
-//    @IBAction func finishByButtonTapped(_ sender: UIDatePicker) {
-//        self.view.addSubview(datePicker)
-//    }
+    @IBAction func deadlineButtonTapped(_ sender: Any) {
+        deadlineField.becomeFirstResponder()
+    }
     
     private func initTask() -> PITask {
         return PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: self.task.lastIncrease, isRecurring: self.task.isRecurring)
     }
-    
 }
 
-extension EditTask2VC: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField == deadlineField {
-//            datePicker = AADatePicker(viewController: self, textField: deadlineField)
-//        }
-//    }
-}
+

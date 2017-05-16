@@ -56,7 +56,7 @@ class EditTaskVC: UIViewController {
     }
     
     @IBAction func intervalSliderMoved(_ sender: Any) {
-        task.taskInterval = Double(Int(intervalSlider.value))
+//        task.taskInterval = Double(Int(intervalSlider.value))
         self.intervalLabel.text = "\(task.taskInterval)"
     }
 
@@ -69,9 +69,10 @@ class EditTaskVC: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: self.initTask()))
+        let task = self.initTask()
+        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: task))
 
-        PanicMonster.instance.scheduleNotification(at: self.initTask().completeBy)
+        PanicMonster.instance.scheduleNotification(forTask: task)
 
         _ = navigationController?.popToRootViewController(animated: true)
     }

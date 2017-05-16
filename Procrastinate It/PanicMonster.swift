@@ -13,16 +13,19 @@ class PanicMonster {
     
     static let instance = PanicMonster()
     
-    func scheduleNotification(at date: Date) {
+    private init(){}
+    
+    func scheduleNotification(forTask: PITask) {
         let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents(in: .current, from: date)
+        let components = calendar.dateComponents(in: .current, from: forTask.completeBy)
         let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
         let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
         let content = UNMutableNotificationContent()
-        content.title = "Panic Monster"
-        content.body = "Arrrrgggg!!!"
+        content.title = forTask.taskName
+        content.body = "Good job, you failed yourself"
         content.sound = UNNotificationSound.default()
-        let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
+        content.badge = 1
+        let request = UNNotificationRequest(identifier: forTask.taskKey, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) {(error) in
             if let error = error {
                 print("Uh oh! We had an error: \(error)")

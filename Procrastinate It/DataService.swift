@@ -27,6 +27,8 @@ class DataService {
     
     static var tasks: [PITask] = []
     
+    private init(){}
+    
     func getTasks(user: String, ref: FIRDatabaseReference) {
         //Case-sensitivity is important for date/time format (eg. if mm is put instead of MM for the month, it will return minutes instead)
         DataService.tasks.removeAll()

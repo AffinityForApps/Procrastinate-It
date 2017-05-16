@@ -17,6 +17,8 @@ class AlertService {
     var alertController = UIAlertController(title: "Unknown Error", message: "Please check your username and password and try again", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
     
+    private init(){}
+    
     //May change this to just work with the standard Firebase error codes directly
     //instead of converting them to work with AlertEnum
     

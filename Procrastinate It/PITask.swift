@@ -11,6 +11,7 @@ class PITask {
     
     private var _taskName: String
     private var _taskInfo: String
+    private var _originalPriority: Double
     private var _taskPriority: Double
     private var _taskInterval: Double
     private var _taskKey: String
@@ -35,6 +36,12 @@ class PITask {
         }
     }
     
+    var originalPriority: Double {
+        get {
+            return _originalPriority
+        }
+    }
+    
     var taskPriority: Double {
         get {
             return _taskPriority
@@ -46,8 +53,6 @@ class PITask {
     var taskInterval: Double {
         get {
             return _taskInterval
-        } set {
-            _taskInterval = newValue
         }
     }
     
@@ -94,6 +99,7 @@ class PITask {
         let baseDate = Date()
         self._taskName = taskName
         self._taskInfo = taskInfo
+        self._originalPriority = taskPriority
         self._taskPriority = taskPriority
         self._taskInterval = taskInterval
         self._taskKey = taskKey
@@ -108,14 +114,21 @@ class PITask {
         
         self._taskName = taskName
         self._taskInfo = taskInfo
+        self._originalPriority = taskPriority
         self._taskPriority = taskPriority
-        self._taskInterval = taskInterval
+        self._taskInterval = PITask.setInterval(priority: taskPriority, startDate: taskDate, endDate: completeBy)
         self._taskKey = taskKey
         self._taskDate = taskDate
         self._lastIncrease = lastIncrease
         self._isRecurring = isRecurring
         self._completeBy = completeBy
         
+    }
+    
+    private static func setInterval(priority: Double, startDate: Date, endDate: Date) -> Double {
+        let secondsInDay: Double = 60*60*24
+        let totalDaysToIncrease = endDate.timeIntervalSince(startDate)/secondsInDay
+        return (10 - priority)/totalDaysToIncrease
     }
     
 }

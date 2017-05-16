@@ -30,8 +30,6 @@
 		62F5D6E31EC5D0AF002BF010 /* PanicMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E21EC5D0AF002BF010 /* PanicMonster.swift */; };
 		62F5D6E51EC68478002BF010 /* EditTask2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E41EC68478002BF010 /* EditTask2VC.swift */; };
 		62F5D6E71EC6B105002BF010 /* AADatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E61EC6B105002BF010 /* AADatePicker.swift */; };
-		62F5D6EA1EC6B89A002BF010 /* AADatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6E91EC6B89A002BF010 /* AADatePickerDelegate.swift */; };
-		62F5D6EC1EC6D5DD002BF010 /* AABarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F5D6EB1EC6D5DD002BF010 /* AABarButtonItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,8 +59,6 @@
 		62F5D6E21EC5D0AF002BF010 /* PanicMonster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanicMonster.swift; sourceTree = "<group>"; };
 		62F5D6E41EC68478002BF010 /* EditTask2VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTask2VC.swift; sourceTree = "<group>"; };
 		62F5D6E61EC6B105002BF010 /* AADatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AADatePicker.swift; sourceTree = "<group>"; };
-		62F5D6E91EC6B89A002BF010 /* AADatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AADatePickerDelegate.swift; sourceTree = "<group>"; };
-		62F5D6EB1EC6D5DD002BF010 /* AABarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AABarButtonItem.swift; sourceTree = "<group>"; };
 		E58B22E9904A474FC9A47C31 /* Pods-Procrastinate It.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.debug.xcconfig"; sourceTree = "<group>"; };
 		E72358AC0E1D03885E25BD4C /* Pods-Procrastinate It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Procrastinate It.release.xcconfig"; path = "Pods/Target Support Files/Pods-Procrastinate It/Pods-Procrastinate It.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,7 +128,7 @@
 				62E842FA1E5FE4F9007E40F5 /* Main.storyboard */,
 				62E843151E6282EF007E40F5 /* PICell.swift */,
 				62E8431B1E643F33007E40F5 /* MaterialView.swift */,
-				62F5D6E81EC6B116002BF010 /* AADatePicker */,
+				62F5D6E61EC6B105002BF010 /* AADatePicker.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -166,16 +162,6 @@
 				62F5D6701EBE1896002BF010 /* GlobalVariables.swift */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		62F5D6E81EC6B116002BF010 /* AADatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				62F5D6E61EC6B105002BF010 /* AADatePicker.swift */,
-				62F5D6E91EC6B89A002BF010 /* AADatePickerDelegate.swift */,
-				62F5D6EB1EC6D5DD002BF010 /* AABarButtonItem.swift */,
-			);
-			name = AADatePicker;
 			sourceTree = "<group>";
 		};
 		7376B901D39C908FDEDB5395 /* Pods */ = {
@@ -329,13 +315,11 @@
 				62E8430C1E5FE5FD007E40F5 /* PITask.swift in Sources */,
 				62E843141E61D2F4007E40F5 /* User.swift in Sources */,
 				62F5D68F1EC1D5B6002BF010 /* SettingsTableVC.swift in Sources */,
-				62F5D6EA1EC6B89A002BF010 /* AADatePickerDelegate.swift in Sources */,
 				62E8431E1E644524007E40F5 /* ProcrastinateVC.swift in Sources */,
 				62F5D6731EBE2501002BF010 /* AlertService.swift in Sources */,
 				62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */,
 				62E8431C1E643F33007E40F5 /* MaterialView.swift in Sources */,
 				62F5D6E51EC68478002BF010 /* EditTask2VC.swift in Sources */,
-				62F5D6EC1EC6D5DD002BF010 /* AABarButtonItem.swift in Sources */,
 				62F5D6E71EC6B105002BF010 /* AADatePicker.swift in Sources */,
 				62F5D6691EBE02D1002BF010 /* AuthService.swift in Sources */,
 				62E8431A1E62C672007E40F5 /* EditTaskVC.swift in Sources */,

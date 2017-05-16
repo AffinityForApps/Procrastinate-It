@@ -15,6 +15,7 @@ import FBSDKLoginKit
 class AuthService {
     
     static let instance = AuthService()
+    private init(){}
     
     func existingEmailUser(email: String, password: String, completion: @escaping callback){
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
