@@ -45,7 +45,7 @@ class EditTask2VC: UIViewController {
         } else {
             dateFormatter.dateStyle = .long
             dateFormatter.timeStyle = .short
-            deadlineLabel.text = "Deadline: \(String(describing: task.completeBy))"
+            deadlineLabel.text = "Deadline:\n \(dateFormatter.string(from: task.completeBy))"
         }
         
         //Sets the UI's visual data whether a new task or existing task
@@ -79,13 +79,20 @@ class EditTask2VC: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        let task = self.initTask()
-        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey,
-                                        firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: task))
-        
-        PanicMonster.instance.scheduleNotification(forTask: task)
-        
-        _ = navigationController?.popToRootViewController(animated: true)
+        if deadlineLabel.text == "Deadline:" {
+            alert = AlertService.instance.customAlert(title: "Choose a deadline date",
+                                                      message: "A deadline date must be chosen to continue")
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let task = initTask()
+            print(task.completeBy)
+            DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey,
+                                            firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: task))
+            
+            PanicMonster.instance.scheduleNotification(forTask: task)
+            
+            _ = navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @IBAction func deadlineButtonTapped(_ sender: Any) {
@@ -93,10 +100,11 @@ class EditTask2VC: UIViewController {
     }
     
     private func initTask() -> PITask {
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return PITask(taskName: taskTitleField.text!, taskInfo: taskDetailsField.text!,
-                      taskPriority: task.taskPriority, taskInterval: task.taskInterval,
-                      taskKey: task.taskKey, taskDate: task.taskDate,
-                      lastIncrease: task.lastIncrease, isRecurring: task.isRecurring)
+                      taskPriority: task.taskPriority, taskKey: task.taskKey,
+                      taskDate: task.taskDate, lastIncrease: task.lastIncrease,
+                      isRecurring: task.isRecurring, completeBy: task.completeBy)
     }
 }
 
