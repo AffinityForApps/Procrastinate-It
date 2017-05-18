@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B9E875355CCCC0A46B40CBE /* Pods_Procrastinate_It.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FCC2899E4A4774BFE9D571 /* Pods_Procrastinate_It.framework */; };
+		624E20B61ECD344000C1A7A2 /* PITaskUserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E20B51ECD344000C1A7A2 /* PITaskUserAction.swift */; };
 		62D50D561E76171F002B88BA /* NewEmailUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D50D551E76171E002B88BA /* NewEmailUserVC.swift */; };
 		62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E842F61E5FE4F7007E40F5 /* AppDelegate.swift */; };
 		62E842FC1E5FE4F9007E40F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E842FA1E5FE4F9007E40F5 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		06FCC2899E4A4774BFE9D571 /* Pods_Procrastinate_It.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Procrastinate_It.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		624E20B51ECD344000C1A7A2 /* PITaskUserAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PITaskUserAction.swift; sourceTree = "<group>"; };
 		62D50D541E74C903002B88BA /* Procrastinate It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Procrastinate It.entitlements"; sourceTree = "<group>"; };
 		62D50D551E76171E002B88BA /* NewEmailUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEmailUserVC.swift; sourceTree = "<group>"; };
 		62E842F31E5FE4F5007E40F5 /* Procrastinate It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Procrastinate It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 			children = (
 				62E8430B1E5FE5FD007E40F5 /* PITask.swift */,
 				62E843131E61D2F4007E40F5 /* User.swift */,
+				624E20B51ECD344000C1A7A2 /* PITaskUserAction.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				62E843141E61D2F4007E40F5 /* User.swift in Sources */,
 				62F5D68F1EC1D5B6002BF010 /* SettingsTableVC.swift in Sources */,
 				62E8431E1E644524007E40F5 /* ProcrastinateVC.swift in Sources */,
+				624E20B61ECD344000C1A7A2 /* PITaskUserAction.swift in Sources */,
 				62F5D6731EBE2501002BF010 /* AlertService.swift in Sources */,
 				62E842F71E5FE4F7007E40F5 /* AppDelegate.swift in Sources */,
 				62E8431C1E643F33007E40F5 /* MaterialView.swift in Sources */,

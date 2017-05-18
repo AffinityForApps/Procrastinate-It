@@ -24,7 +24,7 @@ class ProcrastinateVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //This removes all the PITasks from the static array, otherwise the local array adds duplicates
         DataService.tasks.removeAll()
-        dataService.getTasks(user: user, ref: ref)
+        dataService.getTasks(user: user, ref: ref, userAction: .added)
     }
     
     override func viewDidLoad() {
@@ -61,11 +61,12 @@ class ProcrastinateVC: UIViewController {
 extension ProcrastinateVC: DataServiceDelegate{
     func tasksLoaded() {
         print("delegate fired")
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
+    
 }
 
-extension ProcrastinateVC: UITableViewDelegate, UITableViewDataSource {
+extension ProcrastinateVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -99,6 +100,10 @@ extension ProcrastinateVC: UITableViewDelegate, UITableViewDataSource {
             return true
         }
     }
+
+}
+
+extension ProcrastinateVC: UITableViewDelegate {
     
     //Changes default delete action title from delete to "Completed"
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

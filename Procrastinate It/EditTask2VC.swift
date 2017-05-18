@@ -13,6 +13,7 @@ import FirebaseAuth
 
 class EditTask2VC: UIViewController {
     
+    let dateFormatter = DateFormatter()
     var task = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0,
                       taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
     
@@ -25,6 +26,7 @@ class EditTask2VC: UIViewController {
     
     @IBOutlet weak var prioritySlider: UISlider!
     @IBOutlet weak var recurringTaskSwitch: UISwitch!
+    
     
     var datePicker: AADatePicker!
     
@@ -40,6 +42,10 @@ class EditTask2VC: UIViewController {
         
         if task.taskName == "" {
             deadlineLabel.text = "Deadline:"
+        } else {
+            dateFormatter.dateStyle = .long
+            dateFormatter.timeStyle = .short
+            deadlineLabel.text = "Deadline: \(String(describing: task.completeBy))"
         }
         
         //Sets the UI's visual data whether a new task or existing task
