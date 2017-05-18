@@ -13,7 +13,8 @@ import FirebaseAuth
 
 class EditTask2VC: UIViewController {
     
-    var task = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0, taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
+    var task = PITask(taskName: "", taskInfo: "", taskPriority: 0, taskInterval: 0,
+                      taskKey: "", taskDate: Date(), lastIncrease: Date(), isRecurring: false)
     
     @IBOutlet weak var taskTitleField: UITextField!
     @IBOutlet weak var taskDetailsField: UITextView!
@@ -34,6 +35,7 @@ class EditTask2VC: UIViewController {
         super.viewDidLoad()
         
         datePicker = AADatePicker(viewController: self, label: deadlineLabel, textField: deadlineField, task: task)
+        
         deadlineField.isHidden = true
         
         if task.taskName == "" {
@@ -72,7 +74,8 @@ class EditTask2VC: UIViewController {
     
     @IBAction func saveTapped(_ sender: Any) {
         let task = self.initTask()
-        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey, firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: task))
+        DataService.instance.uploadTask(user: user, ref: ref, taskKey: self.task.taskKey,
+                                        firTask: DataService.instance.prepareForFirebaseUpload(user: user, ref: ref, task: task))
         
         PanicMonster.instance.scheduleNotification(forTask: task)
         
@@ -84,7 +87,10 @@ class EditTask2VC: UIViewController {
     }
     
     private func initTask() -> PITask {
-        return PITask(taskName: self.taskTitleField.text!, taskInfo: self.taskDetailsField.text!, taskPriority: self.task.taskPriority, taskInterval: self.task.taskInterval, taskKey: self.task.taskKey, taskDate: self.task.taskDate, lastIncrease: self.task.lastIncrease, isRecurring: self.task.isRecurring)
+        return PITask(taskName: taskTitleField.text!, taskInfo: taskDetailsField.text!,
+                      taskPriority: task.taskPriority, taskInterval: task.taskInterval,
+                      taskKey: task.taskKey, taskDate: task.taskDate,
+                      lastIncrease: task.lastIncrease, isRecurring: task.isRecurring)
     }
 }
 
