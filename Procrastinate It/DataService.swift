@@ -58,11 +58,11 @@ class DataService {
             let task = PITask(taskName: snapshotDictionary!["Task Name"] as! String,
                               taskInfo: snapshotDictionary!["Task Info"] as! String,
                               taskPriority: snapshotDictionary!["Task Priority"] as! Double,
-                              taskInterval: snapshotDictionary!["Task Interval"] as! Double,
                               taskKey: snapshot.key,
                               taskDate: self.dateFormatter.date(from: snapshotDictionary!["Task Date"] as! String)! as Date,
                               lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date,
-                              isRecurring: snapshotDictionary!["Recurring"] as! Bool)
+                              isRecurring: snapshotDictionary!["Recurring"] as! Bool,
+                              completeBy: self.dateFormatter.date(from:snapshotDictionary!["Deadline Date"] as! String)! as Date)
             
             self.nonDuplicateTaskVerification(task: task)
             
@@ -131,7 +131,8 @@ class DataService {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let formattedTaskDate = dateFormatter.string(from: task.taskDate)
         let formattedLastIncrease = dateFormatter.string(from: task.lastIncrease)
-        let firTask = ["Task Name":task.taskName,"Task Info":task.taskInfo,"Task Priority":task.taskPriority,"Task Interval":task.taskInterval, "Task Date": formattedTaskDate, "Last Increase":formattedLastIncrease,"Recurring": task.isRecurring] as [String: Any]
+        let formattedDeadline = dateFormatter.string(from: task.completeBy)
+        let firTask = ["Task Name":task.taskName,"Task Info":task.taskInfo,"Task Priority":task.taskPriority,"Task Interval":task.taskInterval, "Task Date": formattedTaskDate, "Last Increase":formattedLastIncrease,"Recurring": task.isRecurring, "Deadline Date": formattedDeadline] as [String: Any]
         return firTask
     }
     
