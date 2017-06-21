@@ -56,7 +56,7 @@ class AADatePicker: UIDatePicker {
         print("\(String(describing: task?.completeBy))")
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
-        label.text = dateFormatter.string(from: self.date)
+        label.text = "Deadline:\n \(dateFormatter.string(from: self.date))"
         self.textField.resignFirstResponder()
     }
     

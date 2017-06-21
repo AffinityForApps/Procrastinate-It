@@ -20,15 +20,18 @@ class PanicMonster {
         let components = calendar.dateComponents(in: .current, from: forTask.completeBy)
         let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
         let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
+        let trigger2 = UNTimeIntervalNotificationTrigger(timeInterval: 30.0, repeats: false)
         let content = UNMutableNotificationContent()
         content.title = forTask.taskName
         content.body = "Good job, you failed yourself"
         content.sound = UNNotificationSound.default()
         content.badge = 1
-        let request = UNNotificationRequest(identifier: forTask.taskKey, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: forTask.taskKey, content: content, trigger: trigger2)
         UNUserNotificationCenter.current().add(request) {(error) in
             if let error = error {
                 print("Uh oh! We had an error: \(error)")
+            } else {
+                print("scheduled!")
             }
         }
     }
