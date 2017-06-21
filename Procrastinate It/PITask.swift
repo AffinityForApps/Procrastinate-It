@@ -121,6 +121,9 @@ class PITask {
     
     private static func setInterval(priority: Double, startDate: Date, endDate: Date) -> Double {
         let secondsInDay: Double = 60*60*24
+        if endDate.timeIntervalSinceNow < secondsInDay {
+            return 10
+        }
         let totalDaysToIncrease = endDate.timeIntervalSince(startDate)/secondsInDay
         return (10 - priority)/totalDaysToIncrease
     }

@@ -62,7 +62,7 @@ class DataService {
                               taskDate: self.dateFormatter.date(from: snapshotDictionary!["Task Date"] as! String)! as Date,
                               lastIncrease: self.dateFormatter.date(from: snapshotDictionary!["Last Increase"] as! String)! as Date,
                               isRecurring: snapshotDictionary!["Recurring"] as! Bool,
-                              completeBy: self.dateFormatter.date(from:snapshotDictionary!["Deadline Date"] as! String)! as Date)
+                              completeBy: self.dateFormatter.date(from:snapshotDictionary!["Complete By"] as! String)! as Date)
             
             self.nonDuplicateTaskVerification(task: task)
             
@@ -81,7 +81,9 @@ class DataService {
         for task in DataService.tasks{
             if task.lastIncrease != self.currentDate {
                 let days = self.currentDate.timeIntervalSince(task.lastIncrease)/Double(self.secondsInDay)
-                if days > 1 {
+                if Int(task.completeBy.timeIntervalSinceNow) < secondsInDay {
+                    task.taskPriority = 10
+                } else if days > 1 {
                     task.taskPriority += task.taskInterval * days
                     if task.taskPriority >= 10{
                         task.taskPriority = 10
@@ -132,7 +134,7 @@ class DataService {
         let formattedTaskDate = dateFormatter.string(from: task.taskDate)
         let formattedLastIncrease = dateFormatter.string(from: task.lastIncrease)
         let formattedDeadline = dateFormatter.string(from: task.completeBy)
-        let firTask = ["Task Name":task.taskName,"Task Info":task.taskInfo,"Task Priority":task.taskPriority,"Task Interval":task.taskInterval, "Task Date": formattedTaskDate, "Last Increase":formattedLastIncrease,"Recurring": task.isRecurring, "Deadline Date": formattedDeadline] as [String: Any]
+        let firTask = ["Task Name":task.taskName,"Task Info":task.taskInfo,"Task Priority":task.taskPriority,"Task Interval":task.taskInterval, "Task Date": formattedTaskDate, "Last Increase":formattedLastIncrease,"Recurring": task.isRecurring, "Complete By": formattedDeadline] as [String: Any]
         return firTask
     }
     

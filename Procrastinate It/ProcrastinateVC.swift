@@ -114,6 +114,7 @@ extension ProcrastinateVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = DataService.tasks[indexPath.row]
+            DataService.tasks.remove(at: indexPath.row)
             self.dataService.deleteOrResetTask(user: self.user, ref: self.ref, task: task)
         }
     }
